@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type = Application
+Name = PyCharm
+Comment = Python brrrr
+Exec = /home/dvt/.local/bin/pycharm-community-2022.1.1/bin/pycharm.sh
+Icon = /home/dvt/.local/bin/pycharm-community-2022.1.1/bin/pycharm.png
+Terminal = false
+Categories = Development;
+

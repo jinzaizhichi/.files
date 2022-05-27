@@ -305,15 +305,15 @@ colors:
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
-  dim:
-    black:   '#21222C'
-    red:     '#FF5555'
-    green:   '#50FA7B'
-    yellow:  '#F1FA8C'
-    blue:    '#BD93F9'
-    magenta: '#FF79C6'
-    cyan:    '#8BE9FD'
-    white:   '#F8F8F2'
+  #dim:
+  #  black:   '#21222C'
+  #  red:     '#FF5555'
+  #  green:   '#50FA7B'
+  #  yellow:  '#F1FA8C'
+  #  blue:    '#BD93F9'
+  #  magenta: '#FF79C6'
+  #  cyan:    '#8BE9FD'
+  #  white:   '#F8F8F2'
 
   # Indexed Colors
   #

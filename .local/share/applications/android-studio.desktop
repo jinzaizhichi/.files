@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Android Studio
+Comment=Where insane Android apps are made dawg
+Exec=/home/dvt/.local/bin/android-studio/bin/studio.sh
+Icon=/home/dvt/.local/bin/android-studio/bin/studio.png
+Categories=Development;IDE;
+Terminal=false
