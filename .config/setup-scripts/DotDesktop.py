@@ -121,12 +121,12 @@ def __show_stats() -> None:
     print(with_color(f'{len(dot_desktop_checked)} .desktop files were already good to go\n', Color.Green))
 
 
-def check_desktop() -> None:
+def check() -> None:
     """
     Make sure all *.desktop files in ~/.local/share/application are pointing to their correct binaries
     """
 
-    print(with_color('Running .desktop check\n', Color.White))
+    print('Running .desktop check\n')
 
     for file in os.listdir(desktop_files_dir):
         if file.endswith('.desktop'):
@@ -135,4 +135,4 @@ def check_desktop() -> None:
 
     __show_stats()
 
-    print(with_color('Finished .desktop check\n', Color.White))
+    print('Finished .desktop check\n')
