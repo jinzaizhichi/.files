@@ -81,7 +81,7 @@ shopt -s histappend  # Append to history, don't overwrite it
 # Prefered options for common programs
 alias df='df --total -h -T'
 alias free='free -h'
-alias nano='nano -E -S -i -l -m -q'
+alias nano='nano -E -S -i -l -q'
 alias more=less
 alias open=xdg-open
 
