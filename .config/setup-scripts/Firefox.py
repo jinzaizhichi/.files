@@ -57,7 +57,7 @@ def check() -> None:
         # Make sure that the chrome  folder exists
         if not os.path.exists(chrome_dir):
             os.mkdir(chrome_dir)
-            print(with_color(f'{chrome_dir} created', Color.Yellow))
+            print(with_color(f'{chrome_dir} created', Color.Cyan))
 
         # Config files already in firefox
         files_gotten = os.listdir(chrome_dir)

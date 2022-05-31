@@ -4,7 +4,8 @@ from Colorize import with_color, Color
 DNF_PROGRAMS = [
     'alacritty',
     'neofetch',
-    'exa'
+    'exa',
+    'pip',
 ]
 
 
