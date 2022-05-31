@@ -7,6 +7,7 @@ DNF_PROGRAMS = [
     'neofetch',
     'exa',
     'pip',
+    'keepassxc',
 ]
 
 
