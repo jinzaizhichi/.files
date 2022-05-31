@@ -1,5 +1,6 @@
 import os
 from configparser import ConfigParser, MissingSectionHeaderError
+
 from Colorize import Color, with_color
 
 BINARY_DIRECTORY = '.local/bin'

@@ -1,4 +1,5 @@
 import AppInstaller
+import CinnamonSettings
 import DotDesktop
 import Firefox
 
@@ -11,6 +12,7 @@ CHECKING_FUNCTIONS = [
     AppInstaller.check,
     DotDesktop.check,
     Firefox.check,
+    CinnamonSettings.check,
 ]
 
 if __name__ == '__main__':
