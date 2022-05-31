@@ -25,14 +25,15 @@ def check() -> None:
         if return_code == 0:
             programs_installed.append(program)
 
-    print(with_color(f'{", ".join(programs_installed)} already installed\n', Color.Green))
+    if len(programs_installed) > 0:
+        print(with_color(f'{", ".join(programs_installed)} already installed\n', Color.Green))
 
-    for program in programs_installed:
-        DNF_PROGRAMS.remove(program)
+        for program in programs_installed:
+            DNF_PROGRAMS.remove(program)
 
     if len(DNF_PROGRAMS) > 0:
         programs = ' '.join(DNF_PROGRAMS)
-        dnf_program_install_command = ['sudo dnf install', programs]
+        dnf_program_install_command = ['sudo', 'dnf', 'install', programs]
 
         subprocess.call(dnf_program_install_command)
 
