@@ -18,8 +18,10 @@ python .config/setup-scripts/main.py
 
 ## Icons and Mouse Cursors
 User-wide directory: `~/.icons`
+
 System-wide icons directory: `/usr/share/icons`
 
 ## Themes
 User-wider directory: `~/.themes`
+
 System-wide themes directory: `/usr/share/themes`
