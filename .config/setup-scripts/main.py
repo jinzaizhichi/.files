@@ -1,3 +1,4 @@
+import AppInstaller
 import DotDesktop
 import Firefox
 
@@ -7,8 +8,9 @@ ONLY UPDATE THIS LIST
 List of the modules that you want to run the check of
 """
 CHECKING_FUNCTIONS = [
+    AppInstaller.check,
     DotDesktop.check,
-    Firefox.check
+    Firefox.check,
 ]
 
 if __name__ == '__main__':

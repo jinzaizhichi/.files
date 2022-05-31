@@ -1,6 +1,5 @@
 import os
 from configparser import ConfigParser, MissingSectionHeaderError
-
 from Colorize import Color, with_color
 
 BINARY_DIRECTORY = '.local/bin'
@@ -53,48 +52,48 @@ def __check_desktop_file(desktop_file_path: str) -> None:
         pass
 
     desktop_entry_section = 'Desktop Entry'
-    if desktop_entry_section in config.sections():
-        for entry_key in config[desktop_entry_section]:
-            if entry_key in ['Exec', 'Icon']:
-                entry_path = config[desktop_entry_section][entry_key]
+    entries_in_desktop = config[desktop_entry_section]
+    if desktop_entry_section in config.sections() and 'Exec' in entries_in_desktop and 'Icon' in entries_in_desktop:
+        for entry_key in ['Exec', 'Icon']:
+            entry_path = entries_in_desktop[entry_key]
 
-                """
-                Entry path does not exists
-                Could be because it isn't the .desktop file we are looking
-                for or because folder was renamed
-                """
-                if not os.path.exists(entry_path):
+            """
+            Entry path does not exists
+            Could be because it isn't the .desktop file we are looking
+            for or because folder was renamed
+            """
+            if not os.path.exists(entry_path):
 
-                    # Not the .desktop we are looking for
-                    if programs_dir not in entry_path:
-                        print(with_color('Not a DVT .desktop\n', Color.Yellow))
-                        return
+                # Not the .desktop we are looking for
+                if programs_dir not in entry_path:
+                    print(with_color('Not a DVT .desktop\n', Color.Yellow))
+                    return
 
-                    our_folder = entry_path.replace(programs_dir, '').split('/')[1]
-                    program_name = __get_filename_without_version(our_folder)
+                our_folder = entry_path.replace(programs_dir, '').split('/')[1]
+                program_name = __get_filename_without_version(our_folder)
 
-                    # Look for program in .local/bin
-                    for dot_desktop_file in os.listdir(programs_dir):
-                        if program_name in dot_desktop_file:  # Found program
-                            new_path = entry_path.replace(our_folder, dot_desktop_file)
+                # Look for program in .local/bin
+                for dot_desktop_file in os.listdir(programs_dir):
+                    if program_name in dot_desktop_file:  # Found program
+                        new_path = entry_path.replace(our_folder, dot_desktop_file)
 
-                            # Update path and write config to .desktop file
-                            config[desktop_entry_section][entry_key] = new_path
-                            with open(desktop_file_path, 'w') as desktop_file:
-                                config.write(desktop_file)
+                        # Update path and write config to .desktop file
+                        config[desktop_entry_section][entry_key] = new_path
+                        with open(desktop_file_path, 'w') as desktop_file:
+                            config.write(desktop_file)
 
-                            dot_desktop_updated.add(desktop_file_path)
-                            print(with_color(f'{entry_key} updated', Color.Cyan))
-                            break
+                        dot_desktop_updated.add(desktop_file_path)
+                        print(with_color(f'{entry_key} updated', Color.Cyan))
+                        break
 
-                    else:  # The program does not exist in the .local/bin directory
-                        dot_desktop_not_found.add(desktop_file_path)
-                        print(with_color('Program not found\n', Color.Red))
-                        return
+                else:  # The program does not exist in the .local/bin directory
+                    dot_desktop_not_found.add(desktop_file_path)
+                    print(with_color('Program not found\n', Color.Red))
+                    return
 
-                else:  # Program exists and everything is ok
-                    dot_desktop_checked.add(desktop_file_path)
-                    print(with_color(f'{entry_key} check', Color.Cyan))
+            else:  # Program exists and everything is ok
+                dot_desktop_checked.add(desktop_file_path)
+                print(with_color(f'{entry_key} check', Color.Cyan))
 
     else:  # Might be a .desktop file but does not have the section we are looking for
         print(with_color('Not a valid .desktop file\n', Color.Yellow))
@@ -128,11 +127,15 @@ def check() -> None:
 
     print('Running .desktop check\n')
 
-    for file in os.listdir(desktop_files_dir):
-        if file.endswith('.desktop'):
-            full_path = os.path.join(desktop_files_dir, file)
-            __check_desktop_file(full_path)
+    if not os.path.exists(programs_dir):
+        os.mkdir(programs_dir)
+        print(with_color('Download and install programs in local binary folder\n', Color.Red))
+    else:
+        for file in os.listdir(desktop_files_dir):
+            if file.endswith('.desktop'):
+                full_path = os.path.join(desktop_files_dir, file)
+                __check_desktop_file(full_path)
 
-    __show_stats()
+        __show_stats()
 
     print('Finished .desktop check\n')
