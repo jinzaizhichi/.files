@@ -32,8 +32,8 @@ def check() -> None:
             DNF_PROGRAMS.remove(program)
 
     if len(DNF_PROGRAMS) > 0:
-        programs = ' '.join(DNF_PROGRAMS)
-        dnf_program_install_command = ['sudo', 'dnf', 'install', programs]
+        dnf_program_install_command = ['sudo', 'dnf', 'install']
+        dnf_program_install_command.extend(DNF_PROGRAMS)
 
         subprocess.call(dnf_program_install_command)
 
@@ -46,7 +46,7 @@ def check() -> None:
     if return_code == 0:
         print(with_color(f'{program} already installed\n', Color.Green))
     else:
-        powerline_install_command = ['sudo pip install', program]
+        powerline_install_command = ['sudo', 'pip', 'install', program]
 
         subprocess.call(powerline_install_command)
 
