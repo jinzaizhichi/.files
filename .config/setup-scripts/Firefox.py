@@ -9,6 +9,13 @@ CONF_DIR = os.path.join(HOME_DIR, '.config/firefox')
 FIREFOX_DIR = os.path.join(HOME_DIR, '.mozilla/firefox')
 
 
+"""
+If need to change about:config preferences, then use:
+https://askubuntu.com/questions/313483/how-do-i-change-firefoxs-aboutconfig-from-a-shell-script
+http://kb.mozillazine.org/User.js_file
+"""
+
+
 def __get_profiles() -> Set[str]:
     """
     Searches for all profile folders in the Firefox directory

@@ -1,4 +1,5 @@
 import os
+from Colorize import with_color, Color
 
 DNF_PROGRAMS = [
     'alacritty',
@@ -14,15 +15,35 @@ def check() -> None:
 
     print('Installing programs\n')
 
-    programs = ' '.join(DNF_PROGRAMS)
-    dnf_program_install_command = f'sudo dnf install {programs}'
+    # Check which programs are installed and remove them from the list
+    programs_installed = list()
+    for program in DNF_PROGRAMS:
+        return_code = os.system(f'which {program}')
 
-    os.system(dnf_program_install_command)
+        if return_code == 0:
+            print(with_color(f'{program} already installed\n', Color.Green))
+            programs_installed.append(program)
 
-    print()
+    for program in programs_installed:
+        DNF_PROGRAMS.remove(program)
 
-    powerline_install_command = 'sudo pip install powerline-shell'
+    if len(DNF_PROGRAMS) > 0:
+        programs = ' '.join(DNF_PROGRAMS)
+        dnf_program_install_command = f'sudo dnf install {programs}'
 
-    os.system(powerline_install_command)
+        os.system(dnf_program_install_command)
 
-    print('\nFinished installing programs\n')
+        print()
+
+    # Check if powerline is installed
+    program = 'powerline-shell'
+    if os.system(f'which {program}') == 0:
+        print(with_color(f'{program} already installed\n', Color.Green))
+    else:
+        powerline_install_command = f'sudo pip install {program}'
+
+        os.system(powerline_install_command)
+
+        print()
+
+    print('Finished installing programs\n')
