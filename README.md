@@ -9,6 +9,7 @@ The repo for my configuration files, all managed using this [guide](https://www.
 ## Installing
 Run the commands below
 ```bash
+sudo dnf install python git
 git clone --bare https://github.com/diego-velez/.files.git $HOME/.files
 alias config='git --git-dir=$HOME/.files/ --work-tree=$HOME'
 config checkout -f
