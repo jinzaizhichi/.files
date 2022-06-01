@@ -95,7 +95,7 @@ def check() -> None:
     print('Running Firefox check\n')
 
     for profile_folder in __get_profiles():
-        print(f'Checking {profile_folder}')
+        print(with_color(f'Checking {profile_folder}', Color.Blue))
 
         profile_path = os.path.join(FIREFOX_DIR, profile_folder)
         __check_folder(CONF_DIR, profile_path)
