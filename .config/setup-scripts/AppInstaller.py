@@ -20,7 +20,7 @@ def check() -> None:
     # Check which programs are installed and remove them from the list
     programs_installed = list()
     for program in DNF_PROGRAMS:
-        return_code = Terminal.run(f'which {program}').returncode
+        return_code = Terminal.bkgd_run(f'which {program}').returncode
 
         if return_code == 0:
             programs_installed.append(program)
@@ -32,18 +32,19 @@ def check() -> None:
             DNF_PROGRAMS.remove(program)
 
     if len(DNF_PROGRAMS) > 0:
-        Terminal.run(f'sudo dnf install {DNF_PROGRAMS}')
+        programs = ' '.join(DNF_PROGRAMS)
+        Terminal.run(f'sudo dnf install -y {programs}')
 
         print()
 
     # Check if powerline is installed
     program = 'powerline-shell'
-    return_code = Terminal.run(f'which {program}').returncode
+    return_code = Terminal.bkgd_run(f'which {program}').returncode
 
     if return_code == 0:
         print(with_color(f'{program} already installed\n', Color.Green))
     else:
-        Terminal.run(f'sudo pip install {program}')
+        Terminal.bkgd_run(f'sudo pip install {program}')
 
         print()
 

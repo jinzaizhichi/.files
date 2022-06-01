@@ -35,10 +35,10 @@ def __check_setting(name: str, setting: str, value: str) -> None:
     :param value: What the setting should be set to
     """
 
-    result = Terminal.run(f'gsettings get {setting}')
+    result = Terminal.bkgd_run(f'gsettings get {setting}')
     output = result.stdout.decode('UTF-8').strip()[1:-1]
     if output != value:
-        Terminal.run(f'gsettings set {setting} {value}')
+        Terminal.bkgd_run(f'gsettings set {setting} {value}')
         print(f'Changing from: {with_color(output, Color.Red)} to {with_color(value, Color.Green)}\n')
     else:
         print(with_color(f'{name} check\n', Color.Green))
