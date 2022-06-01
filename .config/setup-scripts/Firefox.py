@@ -2,12 +2,12 @@ import os
 import shutil
 from configparser import ConfigParser
 from typing import Set
+
 from Colorize import with_color, Color
 
 HOME_DIR = os.getenv('HOME')
 CONF_DIR = os.path.join(HOME_DIR, '.config/firefox')
 FIREFOX_DIR = os.path.join(HOME_DIR, '.mozilla/firefox')
-
 
 """
 If need to change about:config preferences, then use:
@@ -41,6 +41,52 @@ def __get_profiles() -> Set[str]:
     return result
 
 
+def __check_folder(path: str, profile: str) -> None:
+    """
+    Makes sure that the folder passed and everything in it is in the Firefox directory
+    :param path: Folder to check is in Firefox
+    :param profile: Where to check the folder is in
+    """
+
+    for root, folders, files in os.walk(path):
+        relative_path = root.replace(path, '').replace('/', '')
+
+        for folder in folders:
+            destination_fullpath = os.path.join(profile, relative_path, folder)
+
+            # Make sure all folders exist
+            if not os.path.exists(destination_fullpath):
+                os.mkdir(destination_fullpath)
+                print(with_color(f'Created {folder} folder', Color.Cyan))
+            else:
+                print(with_color(f'{folder} check', Color.Green))
+
+        for file in files:
+            # Do not copy README to Firefox profile
+            if file == 'README.md':
+                continue
+
+            destination_fullpath = os.path.join(profile, relative_path, file)
+            source_fullpath = os.path.join(root, file)
+
+            # Make sure all files exist
+            if not os.path.exists(destination_fullpath):
+                shutil.copy(source_fullpath, destination_fullpath)
+
+                print(with_color(f'Copied {file} file', Color.Cyan))
+                continue
+
+            destination_file = open(destination_fullpath, 'r').readlines()
+            source_file = open(source_fullpath, 'r').readlines()
+
+            # Make sure files are the same
+            if source_file != destination_file:
+                shutil.copy(source_fullpath, destination_fullpath)
+                print(with_color(f'Updated {file}', Color.Cyan))
+            else:
+                print(with_color(f'{file} check', Color.Green))
+
+
 def check() -> None:
     """
     Makes sure that the Firefox configuration files exist and are up-to-date
@@ -51,43 +97,8 @@ def check() -> None:
     for profile_folder in __get_profiles():
         print(f'Checking {profile_folder}')
 
-        profile_dir = os.path.join(FIREFOX_DIR, profile_folder)
-        chrome_dir = os.path.join(profile_dir, 'chrome')
-
-        # Make sure that the chrome  folder exists
-        if not os.path.exists(chrome_dir):
-            os.mkdir(chrome_dir)
-            print(with_color(f'{chrome_dir} created', Color.Cyan))
-
-        # Config files already in firefox
-        files_gotten = os.listdir(chrome_dir)
-
-        for file in os.listdir(CONF_DIR):
-            # Skip README file
-            if file == 'README.md':
-                continue
-
-            # Fullpath to files
-            needed_file_path = os.path.join(CONF_DIR, file)
-            gotten_file_path = os.path.join(chrome_dir, file)
-
-            # Check config is already in firefox
-            if file in files_gotten:
-                # Lines of files
-                needed_lines = open(needed_file_path, 'r').readlines()
-                gotten_lines = open(gotten_file_path, 'r').readlines()
-
-                # Making sure files are the same
-                if needed_lines != gotten_lines:
-                    shutil.copy(needed_file_path, gotten_file_path)
-
-                    print(with_color(f'{file} updated', Color.Cyan))
-                else:
-                    print(with_color(f'{file} check', Color.Cyan))
-
-            else:  # Copy files from .config to firefox
-                shutil.copy(needed_file_path, gotten_file_path)
-                print(with_color(f'{file} created', Color.Cyan))
+        profile_path = os.path.join(FIREFOX_DIR, profile_folder)
+        __check_folder(CONF_DIR, profile_path)
 
         print(with_color('Done\n', Color.Green))
 
