@@ -44,7 +44,7 @@ def check() -> None:
     if return_code == 0:
         print(with_color(f'{program} already installed\n', Color.Green))
     else:
-        Terminal.bkgd_run(f'sudo pip install {program}')
+        Terminal.run(f'sudo pip install {program}')
 
         print()
 
