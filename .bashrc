@@ -109,6 +109,9 @@ alias remove="sudo dnf remove"
 # Used for config-files repo
 alias config='git --git-dir=$HOME/.files/ --work-tree=$HOME'
 
+# University
+alias rumad="ssh -oHostKeyAlgorithms=+ssh-rsa estudiante@rumad.uprm.edu"
+
 ## powerline-shell
 function _update_ps1() {
     PS1=$(powerline-shell $?)
