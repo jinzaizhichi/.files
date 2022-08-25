@@ -2,6 +2,7 @@ import AppInstaller
 import CinnamonSettings
 import DotDesktop
 import Firefox
+import DisplayManager
 
 """
 ONLY UPDATE THIS LIST
@@ -13,6 +14,7 @@ CHECKING_FUNCTIONS = [
     DotDesktop.check,
     Firefox.check,
     CinnamonSettings.check,
+    DisplayManager.check
 ]
 
 if __name__ == '__main__':

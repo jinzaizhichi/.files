@@ -42,6 +42,7 @@ def __check_desktop_file(desktop_file_path: str) -> None:
     dot_desktop_file = desktop_file_path.split("/")[-1]
     print(with_color(f'Checking: {dot_desktop_file}', Color.Blue))
 
+    # Disable interpolation to fix issue #1
     config = ConfigParser(interpolation=None)
 
     # Disable behaviour where it makes entry keys lowercase
