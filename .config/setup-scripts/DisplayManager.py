@@ -14,7 +14,7 @@ display_manager_service_path = '/etc/systemd/system/display-manager.service'
 # The variable that the display manager is assigned to
 display_manager_key = 'ExecStart'
 desired_display_manager = 'sddm'
-path_to_theme = '/home/dvt/Downloads/sugar-candy/'
+path_to_theme = os.getenv('HOME') + '/.config/sddm-theme/sugar-candy'
 theme_name = path_to_theme.split('/')[-1]
 dm_theme_dir = '/usr/share/sddm/themes/'
 theme_config_file = '/etc/sddm.conf'
