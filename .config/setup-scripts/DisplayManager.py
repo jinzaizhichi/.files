@@ -4,7 +4,6 @@
 3. install a theme
 """
 import os.path
-from configparser import ConfigParser
 
 import Terminal
 from Colorize import with_color, Color
@@ -17,6 +16,7 @@ path_to_theme = os.getenv('HOME') + '/.config/sddm-theme/sugar-candy'
 theme_name = path_to_theme.split('/')[-1]
 dm_theme_dir = '/usr/share/sddm/themes/'
 theme_config_file = '/etc/sddm.conf'
+custom_theme_config_file = os.getenv('HOME') + '/.config/sddm-theme/sddm.conf'
 
 
 def __get_current_display_manager() -> [str | None]:
@@ -59,13 +59,7 @@ def __apply_theme() -> None:
     if os.path.exists(path_to_theme) and not os.path.exists(theme_path):
         Terminal.run(f'sudo cp -r {path_to_theme} {theme_path}')
 
-    config = ConfigParser(interpolation=None)
-    # Disable behaviour where it makes entry keys lowercase
-    config.optionxform = str
-    config.read(theme_config_file)
-
-    # TODO: Either set theme current or copy file
-    # print(config['Theme']['Current'])
+    Terminal.run(f"sudo cp {custom_theme_config_file} {theme_config_file}")
 
 
 def check() -> None:
