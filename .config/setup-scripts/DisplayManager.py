@@ -4,11 +4,10 @@
 3. install a theme
 """
 import os.path
-import shutil
 from configparser import ConfigParser
 
-from Colorize import with_color, Color
 import Terminal
+from Colorize import with_color, Color
 
 display_manager_service_path = '/etc/systemd/system/display-manager.service'
 # The variable that the display manager is assigned to
@@ -58,7 +57,7 @@ def __enable_desired_display_manager() -> None:
 def __apply_theme() -> None:
     theme_path = dm_theme_dir + theme_name
     if os.path.exists(path_to_theme) and not os.path.exists(theme_path):
-        shutil.copytree(path_to_theme, theme_path)
+        Terminal.run(f'sudo cp -r {path_to_theme} {theme_path}')
 
     config = ConfigParser(interpolation=None)
     # Disable behaviour where it makes entry keys lowercase
