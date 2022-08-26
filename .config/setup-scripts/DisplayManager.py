@@ -12,6 +12,7 @@ display_manager_service_path = '/etc/systemd/system/display-manager.service'
 # The variable that the display manager is assigned to
 display_manager_key = 'ExecStart'
 desired_display_manager = 'sddm'
+libraries_needed = ['qt5-qtgraphicaleffects', 'qt5-qtquickcontrols2', 'qt5-qtsvg']
 path_to_theme = os.getenv('HOME') + '/.config/sddm-theme/sugar-candy'
 theme_name = path_to_theme.split('/')[-1]
 dm_theme_dir = '/usr/share/sddm/themes/'
@@ -76,7 +77,10 @@ def check() -> None:
 
         return_code = Terminal.bkgd_run(f'which {desired_display_manager}').returncode
         if return_code != 0:
-            Terminal.run(f'sudo dnf install -y {desired_display_manager}')
+            command = f'sudo dnf install -y {desired_display_manager}'
+            for library in libraries_needed:
+                command += ' ' + library
+            Terminal.run(command)
         else:
             print(with_color(f'{desired_display_manager} is already installed', Color.Cyan))
 
