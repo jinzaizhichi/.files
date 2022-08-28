@@ -1,8 +1,3 @@
-"""
-1. disable previous login manager using: grep 'ExecStart=' /etc/systemd/system/display-manager.service to check the current one
-2. install sddm and enable it
-3. install a theme
-"""
 import os.path
 
 import Terminal
