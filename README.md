@@ -7,7 +7,7 @@ The repo for my configuration files, all managed using this [guide](https://www.
 3. [Themes](#themes)
 
 ## Installing
-Run the commands below
+This setup script was written to work on Fedora Cinnamon, simply copy paste the lines below on a terminal
 ```bash
 sudo dnf install -y python git
 git clone --bare https://github.com/diego-velez/.files.git $HOME/.files
