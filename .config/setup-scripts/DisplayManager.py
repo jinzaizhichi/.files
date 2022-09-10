@@ -6,13 +6,16 @@ from Colorize import with_color, Color
 display_manager_service_path = '/etc/systemd/system/display-manager.service'
 # The variable that the display manager is assigned to
 display_manager_key = 'ExecStart'
-desired_display_manager = 'sddm'
-libraries_needed = ['qt5-qtgraphicaleffects', 'qt5-qtquickcontrols2', 'qt5-qtsvg']
-path_to_theme = os.getenv('HOME') + '/.config/sddm-theme/sugar-candy'
-theme_name = path_to_theme.split('/')[-1]
 dm_theme_dir = '/usr/share/sddm/themes/'
 theme_config_file = '/etc/sddm.conf'
 custom_theme_config_file = os.getenv('HOME') + '/.config/sddm-theme/sddm.conf'
+"""
+MODIFY VARIABLES BELOW ONLY (except path_to_theme)
+"""
+desired_display_manager = 'sddm'
+libraries_needed = ['qt5-qtgraphicaleffects', 'qt5-qtquickcontrols2', 'qt5-qtsvg']
+theme_name = 'sugar-candy'
+path_to_theme = os.getenv('HOME') + f'/.config/sddm-theme/{theme_name}'
 
 
 def __get_current_display_manager() -> [str | None]:

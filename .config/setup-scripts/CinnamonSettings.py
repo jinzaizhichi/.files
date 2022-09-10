@@ -1,7 +1,12 @@
 import Terminal
 from Colorize import Color, with_color
 
-# What should be installed
+"""
+Icons, cursors and themes that should be applied
+
+Icons and cursors should be installed in ~/.icons
+Desktop, window borders and controls theme should be installed in ~/.themes
+"""
 ICONS = 'McMojave-circle-green'
 CURSOR = 'Bibata-Modern-Ice'
 DESKTOP = 'Dracula'

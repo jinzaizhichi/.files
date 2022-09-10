@@ -1,6 +1,7 @@
 import Terminal
 from Colorize import with_color, Color
 
+# MODIFY LIST to have all packages you desire to have installed
 DNF_PROGRAMS = [
     'alacritty',
     'neofetch',

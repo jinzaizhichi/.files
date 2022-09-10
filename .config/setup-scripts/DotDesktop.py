@@ -3,7 +3,9 @@ from configparser import ConfigParser, MissingSectionHeaderError
 
 from Colorize import Color, with_color
 
+# Folder where all package binaries should be installed in
 BINARY_DIRECTORY = '.local/bin'
+# Folder for all .desktop files
 DOT_DESKTOP_FILE_DIRECTORY = '.local/share/applications'
 
 user_dir = os.getenv('HOME')

@@ -89,7 +89,7 @@ def __check_folder(path: str, profile: str) -> None:
 
 def check() -> None:
     """
-    Makes sure that the Firefox configuration files exist and are up-to-date
+    Apply all Firefox configuration files in ~/.config/firefox
     """
 
     print('Running Firefox check\n')
