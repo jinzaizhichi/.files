@@ -64,8 +64,6 @@ ex ()
   fi
 }
 
-#xhost +local:root > /dev/null 2>&1
-
 # Case-insensitive TAB completion
 bind "set completion-ignore-case on"
 
@@ -89,6 +87,13 @@ alias open=xdg-open
 alias ls='exa --color=always --group-directories-first -a --icons'
 alias ll='exa --color=always --group-directories-first -a -l -h -G --icons'
 alias lt='exa --color=always --group-directories-first -a -T --icons'
+
+# Change cat for bat and other implementations
+alias cat='bat --theme Dracula'
+# usage: help <command>
+help() {
+    "$@" 2>&1 | cat --paging=never --language=help
+}
 
 # Colorized grep
 alias grep='grep --colour=always'

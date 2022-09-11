@@ -8,6 +8,7 @@ DNF_PROGRAMS = [
     'exa',
     'pip',
     'keepassxc',
+    'bat',
 ]
 
 
