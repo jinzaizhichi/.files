@@ -9,6 +9,7 @@ DNF_PROGRAMS = [
     'pip',
     'keepassxc',
     'bat',
+    'fd-find',
 ]
 
 

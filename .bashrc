@@ -82,6 +82,7 @@ alias free='free -h'
 alias nano='nano -E -S -i -l -q'
 alias more=less
 alias open=xdg-open
+alias fd='fd --hidden --no-ignore'
 
 # Change ls for exa
 alias ls='exa --color=always --group-directories-first -a --icons'
