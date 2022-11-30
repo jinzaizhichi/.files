@@ -116,7 +116,7 @@ alias remove="sudo dnf remove"
 alias config='git --git-dir=$HOME/.files/ --work-tree=$HOME'
 
 # University
-alias rumad="ssh -oHostKeyAlgorithms=+ssh-rsa estudiante@rumad.uprm.edu"
+alias rumad="ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=ssh-rsa estudiante@rumad.uprm.edu"
 
 # PATH
 export PATH=/home/dvt/.local/bin:$PATH
