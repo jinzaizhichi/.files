@@ -52,7 +52,8 @@ See the above repository for updates as well as full license text. */
   display:none;
 }
 .tabbrowser-tab:not([pinned]):hover .tab-close-button{
-  display:-moz-box !important;
+  display: flex !important;
+  align-items: center;
 }
 
 
@@ -87,10 +88,16 @@ See the above repository for updates as well as full license text. */
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/floating_findbar_on_top.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
 
-/* Note that privacy.resistFingerprinting.letterboxing prevents this from working properly */
+/* This style makes findbar appear as floating box at the top-left of the content area.
+ * If you want the findbar on right side instead then create a new pref
+ * userchrome.floating-findbar-on-right.enabled and set it to true and restart Firefox
+ * 
+ * Note that privacy.resistFingerprinting.letterboxing prevents this from working properly
+ */
 
 findbar{
-  -moz-box-ordinal-group: 0;
+  -moz-box-ordinal-group: 0; /* Fx <112 compatibility */
+  order: -1;
   margin-bottom: -33px;
   position: relative;
   border-top: none !important;
@@ -99,6 +106,7 @@ findbar{
   background: none !important;
   pointer-events: none;
   z-index: 1;
+  white-space: nowrap;
 }
 
 .findbar-container > .findbar-find-fast{
@@ -112,26 +120,34 @@ findbar > .findbar-container,
 findbar > .close-icon{
   border: 1px solid var(--chrome-content-separator-color);
   border-width: 0 0 1px 0px;
-  background: var(--uc-light-bkgnd-color,var(--toolbar-bgcolor)) !important;
+  background-color: var(--lwt-accent-color) !important;
+  background-image: linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image,none);
   pointer-events: auto;
 }
+
 findbar > .findbar-container{
-  -moz-box-direction: reverse;
-  border-left-width: 1px;
-  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-right-width: 1px;
+  height: initial !important;
+  margin-inline: 0px !important;
+  overflow-inline: visible !important;
 }
 
 .findbar-find-status{
-  display: -moz-box;
+  display: flex;
   overflow: hidden;
   text-overflow: ellipsis;
-  -moz-box-flex: 1;
+  -moz-box-flex: 1; /* Fx <112 compatibility */
+  flex-grow: 1;
 }
-
+ 
 .findbar-closebutton{
   margin: 0 !important;
   border-radius: 0 !important;
   padding: 5px !important;
+  width: initial !important;
+  -moz-box-ordinal-group: 0; /* Fx <112 compatibility */
+  order: -1;
 }
 .findbar-closebutton > image{ padding: 3px }
 .findbar-closebutton:hover > image{
@@ -139,29 +155,47 @@ findbar > .findbar-container{
   border-radius: 4px
 }
 findbar > .findbar-container > hbox{ margin: 0 5px }
-
-findbar::before{
+ 
+findbar::after{
   content:"";
-  display: -moz-box;
-  -moz-box-flex: 100;
-}
+  display: flex;
+  -moz-box-flex: 100; /* Fx <112 compatibility */
+  flex-grow: 100;
+} 
 
-/*
-Move findbar so it isn't over the scrollbar
-Delete if you want findbar to begin from right window edge
-*/
-findbar{
-  margin-right: 16px;
-  border-right: 1px solid var(--chrome-content-separator-color);
+@supports -moz-bool-pref("userchrome.floating-findbar-on-right.enabled"){
+  findbar{
+    -moz-box-direction: reverse; /* Fx <112 compatibility */
+    flex-direction: row-reverse;
+  }
+  findbar > .findbar-container{
+    -moz-box-direction: reverse;
+    flex-direction: row-reverse;
+    border-inline-width: 1px 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 4px;
+  }
+  /*
+  Move findbar so it isn't over the scrollbar
+  Delete if you want findbar to begin from right window edge
+  */
+  findbar{
+    margin-right: 16px;
+    border-right: 1px solid var(--chrome-content-separator-color);
+  }
 }
 
 
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/centered_tab_content.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
 .tabbrowser-tab[selected]:not(:hover):not([pinned]) .tab-label-container,
-#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab:not(:hover):not([pinned]) .tab-label-container{ margin-inline-end: 7px }
-.tab-content:not([pinned])::before{
-  display: -moz-box;
-  content: "";
-  -moz-box-flex: 1;
+#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab:not(:hover):not([pinned]) .tab-label-container{
+  padding-inline-end: 6px !important;
+}
+.tab-icon-stack{
+  margin-inline-start: auto
+}
+.tab-label-container{
+  max-width: min-content;
+  margin-inline-end: auto;
 }

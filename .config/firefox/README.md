@@ -14,8 +14,6 @@ All "plugins" were taken from [this](https://github.com/MrOtherGuy/firefox-cssha
 
 ### userChrome.css plugins
 - [Round UI Items](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/round_ui_items.css)
-- [Vertical Bookmarks Toolbar](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/vertical_bookmarks_toolbar.css)
-- [One Line Navigation Bar](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/navbar_tabs_oneliner.css)
 - [Centered Tab Content](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/centered_tab_content.css)
 - [Floating Find Bar on Top](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/floating_findbar_on_top.css)
 - [Loading Indicator Bouncing Line](https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/loading_indicator_bouncing_line.css)
