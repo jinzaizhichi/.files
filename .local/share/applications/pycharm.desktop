@@ -2,8 +2,8 @@
 Type = Application
 Name = PyCharm
 Comment = Python brrrr
-Exec = /home/dvt/.local/bin/pycharm-community-2021.3.3/bin/pycharm.sh
-Icon = /home/dvt/.local/bin/pycharm-community-2021.3.3/bin/pycharm.png
+Exec = /home/dvt/.local/bin/pycharm-2023.2.1/bin/pycharm.sh
+Icon = /home/dvt/.local/bin/pycharm-2023.2.1/bin/pycharm.png
 Terminal = false
 Categories = Development;
 

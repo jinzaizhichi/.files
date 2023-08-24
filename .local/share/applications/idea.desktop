@@ -2,8 +2,8 @@
 Type = Application
 Name = IntelliJ IDEA
 Comment = Where Java and Kotlin is born
-Exec = /home/dvt/.local/bin/idea-IC-222.3345.118/bin/idea.sh
-Icon = /home/dvt/.local/bin/idea-IC-222.3345.118/bin/idea.png
+Exec = /home/dvt/.local/bin/idea-IU-232.9559.62/bin/idea.sh
+Icon = /home/dvt/.local/bin/idea-IU-232.9559.62/bin/idea.png
 Terminal = false
 Categories = Development;
 
