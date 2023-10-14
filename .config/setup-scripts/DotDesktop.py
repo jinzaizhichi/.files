@@ -57,51 +57,52 @@ def __check_desktop_file(desktop_file_path: str) -> None:
 
     desktop_entry_section = 'Desktop Entry'
     entries_in_desktop = config[desktop_entry_section]
-    if desktop_entry_section in config.sections() and 'Exec' in entries_in_desktop and 'Icon' in entries_in_desktop:
-        for entry_key in ['Exec', 'Icon']:
-            entry_path = entries_in_desktop[entry_key]
 
-            """
-            Entry path does not exists
-            Could be because it isn't the .desktop file we are looking
-            for or because folder was renamed
-            """
-            if not os.path.exists(entry_path):
-
-                # Not the .desktop we are looking for
-                if programs_dir not in entry_path:
-                    print(with_color('Not a DVT .desktop\n', Color.Yellow))
-                    return
-
-                our_folder = entry_path.replace(programs_dir, '').split('/')[1]
-                program_name = __get_filename_without_version(our_folder)
-
-                # Look for program in .local/bin
-                for dot_desktop_file in os.listdir(programs_dir):
-                    if program_name in dot_desktop_file:  # Found program
-                        new_path = entry_path.replace(our_folder, dot_desktop_file)
-
-                        # Update path and write config to .desktop file
-                        config[desktop_entry_section][entry_key] = new_path
-                        with open(desktop_file_path, 'w') as desktop_file:
-                            config.write(desktop_file)
-
-                        dot_desktop_updated.add(desktop_file_path)
-                        print(with_color(f'{entry_key} updated', Color.Cyan))
-                        break
-
-                else:  # The program does not exist in the .local/bin directory
-                    dot_desktop_not_found.add(desktop_file_path)
-                    print(with_color('Program not found\n', Color.Red))
-                    return
-
-            else:  # Program exists and everything is ok
-                dot_desktop_checked.add(desktop_file_path)
-                print(with_color(f'{entry_key} check', Color.Cyan))
-
-    else:  # Might be a .desktop file but does not have the section we are looking for
+    # Might be a .desktop file but does not have the section we are looking for
+    if desktop_entry_section not in config.sections() or 'Exec' not in entries_in_desktop or 'Icon' not in entries_in_desktop:
         print(with_color('Not a valid .desktop file\n', Color.Yellow))
         return
+
+    for entry_key in ['Exec', 'Icon']:
+        entry_path = entries_in_desktop[entry_key]
+
+        # Program exists and everything is ok
+        if os.path.exists(entry_path):
+            dot_desktop_checked.add(desktop_file_path)
+            print(with_color(f'{entry_key} check', Color.Cyan))
+            continue
+
+        # Not the .desktop we are looking for
+        if programs_dir not in entry_path:
+            print(with_color('Not a DVT .desktop\n', Color.Yellow))
+            return
+
+        """
+        Entry path does not exists
+        Could be because it isn't the .desktop file we are looking
+        for or because folder was renamed
+        """
+        our_folder = entry_path.replace(programs_dir, '').split('/')[1]
+        program_name = __get_filename_without_version(our_folder)
+
+        # Look for program in .local/bin
+        for dot_desktop_file in os.listdir(programs_dir):
+            if program_name in dot_desktop_file:  # Found program
+                new_path = entry_path.replace(our_folder, dot_desktop_file)
+
+                # Update path and write config to .desktop file
+                config[desktop_entry_section][entry_key] = new_path
+                with open(desktop_file_path, 'w') as desktop_file:
+                    config.write(desktop_file)
+
+                dot_desktop_updated.add(desktop_file_path)
+                print(with_color(f'{entry_key} updated', Color.Cyan))
+                break
+
+        else:  # The program does not exist in the .local/bin directory
+            dot_desktop_not_found.add(desktop_file_path)
+            print(with_color('Program not found\n', Color.Red))
+            return
 
     print(with_color('Done\n', Color.Green))
 
@@ -124,6 +125,17 @@ def __show_stats() -> None:
     print(with_color(f'{len(dot_desktop_checked)} .desktop files were already good to go\n', Color.Green))
 
 
+def __apply_to_each_desktop_file(func):
+    """
+    Applies a function to each .desktop file
+    :param func Function that gets passed the absolute path to a .desktop file
+    """
+    for file in os.listdir(desktop_files_dir):
+        if file.endswith('.desktop'):
+            full_path = os.path.join(desktop_files_dir, file)
+            func(full_path)
+
+
 def check() -> None:
     """
     Make sure all *.desktop files in ~/.local/share/application are pointing to their correct binaries
@@ -135,11 +147,7 @@ def check() -> None:
         os.mkdir(programs_dir)
         print(with_color('Download and install programs in local binary folder\n', Color.Red))
     else:
-        for file in os.listdir(desktop_files_dir):
-            if file.endswith('.desktop'):
-                full_path = os.path.join(desktop_files_dir, file)
-                __check_desktop_file(full_path)
-
+        __apply_to_each_desktop_file(__check_desktop_file)
         __show_stats()
 
     print('Finished .desktop check\n')
