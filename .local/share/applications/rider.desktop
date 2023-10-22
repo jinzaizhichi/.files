@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Rider
+Comment=C# and the .NET baby
+Exec=/home/dvt/.local/bin/Rider-2023.2.2/bin/rider.sh
+Icon=/home/dvt/.local/bin/Rider-2023.2.2/bin/rider.png
+Terminal=false
+Categories=Development;
