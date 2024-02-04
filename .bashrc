@@ -85,9 +85,9 @@ alias open=xdg-open
 alias fd='fd --hidden --no-ignore'
 
 # Change ls for exa
-alias ls='exa --color=always --group-directories-first -a --icons'
-alias ll='exa --color=always --group-directories-first -a -l -h -G --icons'
-alias lt='exa --color=always --group-directories-first -a -T --icons'
+alias ls='eza --color=always --group-directories-first -a --icons'
+alias ll='eza --color=always --group-directories-first -a -l -h -G --icons'
+alias lt='eza --color=always --group-directories-first -a -T --icons'
 
 # Change cat for bat and other implementations
 alias cat='bat --theme Dracula'
@@ -130,3 +130,5 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 ##
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
