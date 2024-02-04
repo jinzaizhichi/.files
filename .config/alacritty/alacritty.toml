@@ -1,0 +1,48 @@
+[colors.bright]
+black = "#6272A4"
+blue = "#D6ACFF"
+cyan = "#A4FFFF"
+green = "#69FF94"
+magenta = "#FF92DF"
+red = "#FF6E6E"
+white = "#FFFFFF"
+yellow = "#FFFFA5"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.normal]
+black = "#21222C"
+blue = "#BD93F9"
+cyan = "#8BE9FD"
+green = "#50FA7B"
+magenta = "#FF79C6"
+red = "#FF5555"
+white = "#F8F8F2"
+yellow = "#F1FA8C"
+
+[colors.primary]
+background = "#282A36"
+foreground = "#F8F8F2"
+
+[colors.selection]
+background = "CellForeground"
+text = "CellBackground"
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[font]
+builtin_box_drawing = true
+
+[font.normal]
+family = "UbuntuMono Nerd Font"
+
+[window]
+opacity = 0.85
+
+[window.dimensions]
+columns = 140
+lines = 40
