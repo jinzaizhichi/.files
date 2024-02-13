@@ -3,7 +3,7 @@ See the above repository for updates as well as full license text. */
 
 /* Make bunch of things in the main UI round */
 
-:root{ --toolbarbutton-border-radius: 24px !important;}
+:root{ --toolbarbutton-border-radius: 24px !important }
 #urlbar-input-container > box:hover,
 #urlbar-input-container > box[open],
 #main-menubar >  menu,
@@ -31,12 +31,6 @@ menupopup{ -moz-appearance: none !important; overflow: -moz-hidden-unscrollable 
 
 .tabbrowser-tab[selected]::after,
 .tabbrowser-tab[beforeselected-visible]::after{ border-color: transparent !important; }
-
-#nav-bar{ box-shadow: none !important; margin-top: 3px }
-.tab-line{ display: none }
-
-.tab-background[selected]{ border-top-width: 2px !important; border-top-color: var(--tab-line-color) !important; }
-.tabbrowser-tab[selected]{ z-index: auto !important; }
 
 .urlbar-icon,
 toolbar toolbarbutton:not(#back-button):not(.bookmark-item):not(.titlebar-button) > .toolbarbutton-icon{  border-radius: 0px !important; clip-path: circle() }
@@ -96,7 +90,6 @@ See the above repository for updates as well as full license text. */
  */
 
 findbar{
-  -moz-box-ordinal-group: 0; /* Fx <112 compatibility */
   order: -1;
   margin-bottom: -33px;
   position: relative;
@@ -137,7 +130,6 @@ findbar > .findbar-container{
   display: flex;
   overflow: hidden;
   text-overflow: ellipsis;
-  -moz-box-flex: 1; /* Fx <112 compatibility */
   flex-grow: 1;
 }
  
@@ -146,7 +138,6 @@ findbar > .findbar-container{
   border-radius: 0 !important;
   padding: 5px !important;
   width: initial !important;
-  -moz-box-ordinal-group: 0; /* Fx <112 compatibility */
   order: -1;
 }
 .findbar-closebutton > image{ padding: 3px }
@@ -159,17 +150,34 @@ findbar > .findbar-container > hbox{ margin: 0 5px }
 findbar::after{
   content:"";
   display: flex;
-  -moz-box-flex: 100; /* Fx <112 compatibility */
   flex-grow: 100;
 } 
 
-@supports -moz-bool-pref("userchrome.floating-findbar-on-right.enabled"){
+@media (-moz-bool-pref: "userchrome.floating-findbar-on-right.enabled"){
   findbar{
-    -moz-box-direction: reverse; /* Fx <112 compatibility */
     flex-direction: row-reverse;
   }
   findbar > .findbar-container{
-    -moz-box-direction: reverse;
+    flex-direction: row-reverse;
+    border-inline-width: 1px 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 4px;
+  }
+  /*
+  Move findbar so it isn't over the scrollbar
+  Delete if you want findbar to begin from right window edge
+  */
+  findbar{
+    margin-right: 16px;
+    border-right: 1px solid var(--chrome-content-separator-color);
+  }
+}
+
+@supports -moz-bool-pref("userchrome.floating-findbar-on-right.enabled"){
+  findbar{
+    flex-direction: row-reverse;
+  }
+  findbar > .findbar-container{
     flex-direction: row-reverse;
     border-inline-width: 1px 0px;
     border-bottom-right-radius: 0px;
@@ -199,3 +207,6 @@ See the above repository for updates as well as full license text. */
   max-width: min-content;
   margin-inline-end: auto;
 }
+
+
+
