@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=WebStorm
+Comment=Web app go brrr
+Exec=/home/dvt/.local/bin/WebStorm-241.15989.47/bin/webstorm.sh
+Icon=/home/dvt/.local/bin/WebStorm-241.15989.47/bin/webstorm.png
+Terminal=false
+Categories=Development;IDE;
