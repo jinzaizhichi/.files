@@ -132,3 +132,7 @@ fi
 ##
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Immediately append the commands to the .bash_history file
+# see https://askubuntu.com/questions/67283/is-it-possible-to-make-writing-to-bash-history-immediate
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
