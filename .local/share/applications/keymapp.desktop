@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Keymapp
+Comment=ZSA keyboard's go brrrr
+Exec=/home/dvt/.local/bin/keymapp/keymapp
+Icon=/home/dvt/.local/bin/keymapp/icon.png
+Terminal=false
+Categories=Development;
