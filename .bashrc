@@ -119,7 +119,7 @@ alias config='git --git-dir=$HOME/.files/ --work-tree=$HOME'
 alias rumad="ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=ssh-rsa estudiante@rumad.uprm.edu"
 
 # PATH
-export PATH=/home/dvt/.local/bin:$PATH
+export PATH=$(go env GOPATH)/bin:$HOME/.local/bin:$PATH
 
 ## powerline-shell
 function _update_ps1() {
