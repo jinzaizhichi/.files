@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Zen
+Comment=Firefox fork go brrr
+Exec=/home/dvt/.local/bin/zen/zen
+Icon=/home/dvt/.local/bin/zen/browser/chrome/icons/default/default128.png
+Terminal=false
+Categories=Network;
