@@ -31,8 +31,7 @@ background = "CellForeground"
 text = "CellBackground"
 
 [cursor.style]
-blinking = "Always"
-shape = "Beam"
+blinking = "On"
 
 [font]
 builtin_box_drawing = true
