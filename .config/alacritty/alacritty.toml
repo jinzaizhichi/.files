@@ -37,7 +37,7 @@ blinking = "On"
 builtin_box_drawing = true
 
 [font.normal]
-family = "UbuntuMono Nerd Font"
+family = "Source Code Pro"
 
 [window]
 opacity = 0.85
