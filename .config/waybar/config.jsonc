@@ -1,0 +1,109 @@
+// -*- mode: jsonc -*-
+{
+    "position": "top",
+    "height": 20,
+    // This is equal to 40% of the my monitor, which should be the default mfact in Hyprland
+    "width": 2028,
+    "reload_style_on_change": true,
+    "margin-top": 10,
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "mpris"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "bluetooth",
+        "pulseaudio",
+        "network",
+        "clock",
+        "tray"
+    ],
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "format": " {icon} ",
+        "format-icons": {
+            "active": "🟢",
+            "empty": "⚫",
+            "persistent": "⚪",
+            "urgent": "🔴"
+        },
+        "persistent-workspaces": {
+            "*": 5
+        }
+    },
+    "bluetooth": {
+        // Hides the module when it is disabled
+        "format-disabled": "",
+        "on-click": "blueman-manager"
+    },
+    "mpris": {
+        "format": " 🎵 {player} ({status}) ➡️ {dynamic}",
+        "dynamic-order": [
+            "title",
+            "artist"
+        ],
+        "dynamic-len": 50,
+        "dynamic-separator": " 🧑‍🎤 "
+    },
+    // Leaving this here just in case something happens with mpris
+    "custom/rhythmbox": {
+        "format": " 🎵 {}",
+        "max-length": 50,
+        "interval": 1,
+        "tooltip": false,
+        "exec": "rhythmbox-client --no-start --print-playing-format=\"%tt:  %aa\"",
+        "on-click": "rhythmbox-client --no-start --play-pause"
+    },
+    "hyprland/window": {
+        "rewrite": {
+            "(.*) — Zen Browser": "🌎 $1",
+            "(.*):~(.*)": "$2"
+        },
+        "icon": true,
+        "icon-size": 20
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}%",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "",
+                "",
+                ""
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M — %d %b %Y} \uf017",
+        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    },
+    "tray": {
+        "spacing": 10,
+        "show-passive-items": true
+    }
+}

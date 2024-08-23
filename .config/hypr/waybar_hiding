@@ -1,0 +1,44 @@
+#!/usr/bin/python
+
+import argparse
+import subprocess
+import sys
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--hide", action="store_true",
+                        default=False,
+                        help="Hides waybar (default shows it)")
+    args = parser.parse_args()
+
+    # "hide" the bar
+    if args.hide:
+        subprocess.Popen(["killall", "waybar"])
+
+        o = subprocess.run(["hyprctl", "activeworkspace"], capture_output=True)
+        processed_output = o.stdout.split(b"\n")
+
+        windows = None
+        for item in processed_output:
+            if item.startswith(b"\twindows: "):
+                # Decode the bytes to a string in order to get the number
+                string = item.decode("utf-8")
+                # Bug: If this is a two digit number then it will only use the
+                # last digit
+                windows = int(string[-1])
+                break
+
+        if windows is None:
+            raise EnvironmentError("The windows attribute was not found")
+
+        # I can use this if I only want to change the outer gaps when there
+        # is only one window when I run this
+        # if windows <= 1:
+        #     subprocess.Popen(["hyprctl", "keyword general:gaps_out 0"])
+        subprocess.Popen(["hyprctl", "keyword general:gaps_out 0"])
+
+        sys.exit(0)
+
+    # Show the bar
+    subprocess.Popen(["waybar"])
+    subprocess.Popen(["hyprctl", "keyword general:gaps_out 10"])
