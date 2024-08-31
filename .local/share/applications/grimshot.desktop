@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Grimshot Area Screenshot
+GenericName=Screenshot Tool
+Comment=Save an area screenshot to Pictures
+Exec=grimshot save area
+Terminal=false
+
