@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Zen
+Name=Zen (Private)
 GenericName=Web Browser
 Comment=Firefox fork go brrr
-Exec=/home/dvt/.local/bin/zen/zen
+Exec=/home/dvt/.local/bin/zen/zen --private-window
 Icon=/home/dvt/.local/bin/zen/browser/chrome/icons/default/default128.png
 Terminal=false
 Categories=Network;
