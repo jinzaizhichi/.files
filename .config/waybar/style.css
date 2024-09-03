@@ -52,8 +52,16 @@ window#waybar {
 	margin-right: 5px;
 }
 
+#custom-power {
+	background-color: @yellow;
+	color: @background;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-radius: 20px;
+}
+
 #tray {
-	background-color: @red;
+	background-color: @green;
 	color: @foreground;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -89,7 +97,7 @@ window#waybar {
 }
 
 #clock {
-	background-color: @green;
+	background-color: @purple;
 	color: @background;
 	padding-left: 8px;
 	padding-right: 8px;
