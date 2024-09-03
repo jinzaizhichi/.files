@@ -50,6 +50,22 @@ return {
           lint.try_lint()
         end,
       })
+
+      -- Allows toggling the linter on or off
+      local lintEnabled = true
+      local toggle_lint = function()
+        if lintEnabled then
+          lintEnabled = false
+          -- vim.diagnostic.reset(nil, 0)
+          vim.diagnostic.hide(nil, 0)
+        else
+          lintEnabled = true
+          vim.diagnostic.show(nil, 0)
+          -- lint.try_lint()
+        end
+      end
+
+      vim.keymap.set('n', '<leader>tl', toggle_lint, { desc = '[T]oggle [L]inter' })
     end,
   },
 }
