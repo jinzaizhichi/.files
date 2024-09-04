@@ -9,8 +9,8 @@ if [[ "$screensaver_chosen" == "0" ]]; then
 elif [[ "$screensaver_chosen" == "1" ]]; then
 	screensaver="asciiquarium"
 else
-	screensaver="cmatrix -s -r"
+	screensaver="cmatrix -r"
 fi
 
-hyprctl dispatch togglespecialworkspace magic && alacritty -e sh -c "$screensaver" & sleep 0.1 && hyprctl dispatch fullscreen 0
+hyprctl dispatch togglespecialworkspace magic && alacritty -e sh -c "$screensaver" & sleep 0.3 && hyprctl dispatch fullscreen 0
 
