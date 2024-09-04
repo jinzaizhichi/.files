@@ -43,14 +43,6 @@ return {
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
-      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
-      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
-        group = lint_augroup,
-        callback = function()
-          lint.try_lint()
-        end,
-      })
-
       -- Allows toggling the linter on or off
       local lintEnabled = true
       local toggle_lint = function()
@@ -64,6 +56,16 @@ return {
           -- lint.try_lint()
         end
       end
+
+      local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        group = lint_augroup,
+        callback = function()
+          if lintEnabled then
+            lint.try_lint()
+          end
+        end,
+      })
 
       vim.keymap.set('n', '<leader>tl', toggle_lint, { desc = '[T]oggle [L]inter' })
     end,
