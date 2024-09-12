@@ -55,7 +55,7 @@ return {
 
       vim.keymap.set('n', '<leader>th', function()
         vim.cmd 'ColorizerToggle'
-      end, { desc = '[T]oggle [H]ighlighting' })
+      end, { desc = 'Toggle [H]ighlighting' })
     end,
   },
   {
@@ -91,7 +91,7 @@ return {
   {
     'mbbill/undotree',
     config = function()
-      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle [u]ndo tree' })
+      vim.keymap.set('n', '<leader>tu', vim.cmd.UndotreeToggle, { desc = 'Toggle [u]ndo tree' })
     end,
   },
 }

@@ -67,7 +67,7 @@ return {
         end,
       })
 
-      vim.keymap.set('n', '<leader>tl', toggle_lint, { desc = '[T]oggle [L]inter' })
+      vim.keymap.set('n', '<leader>tl', toggle_lint, { desc = 'Toggle [L]inter' })
     end,
   },
 }
