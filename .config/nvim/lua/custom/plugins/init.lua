@@ -52,6 +52,10 @@ return {
           vim.cmd 'ColorizerAttachToBuffer'
         end,
       })
+
+      vim.keymap.set('n', '<leader>th', function()
+        vim.cmd 'ColorizerToggle'
+      end, { desc = '[T]oggle [H]ighlighting' })
     end,
   },
   {
