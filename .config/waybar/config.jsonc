@@ -3,79 +3,177 @@
     "position": "top",
     "height": 20,
     // This is equal to 40% of the my monitor, which should be the default mfact in Hyprland
-    "width": 2028,
+    // This also accounts for a 2px border size and a 5px gaps in
+    "width": 2034,
     "reload_style_on_change": true,
-    "margin-top": 10,
+    "spacing": 0,
     // Choose the order of the modules
     "modules-left": [
+        "custom/left1",
         "hyprland/workspaces",
-        "mpris"
-    ],
-    "modules-center": [
+        "custom/right1",
         "hyprland/window"
     ],
+    "modules-center": [
+        "custom/left2",
+        "temperature",
+        "custom/left3",
+        "memory",
+        "custom/left4",
+        "cpu#usage",
+        "custom/leftin1",
+        "custom/left5",
+        "custom/center",
+        "custom/right2",
+        "custom/rightin1",
+        "clock#time",
+        "custom/right3",
+        "clock#date",
+        "custom/right4",
+        "network",
+        //"custom/wi",
+        //"custom/wifi",
+        "custom/right5"
+    ],
     "modules-right": [
-        "bluetooth",
+        "mpris",
+        "custom/left6",
         "pulseaudio",
-        //"network",
-        "clock",
-        "tray",
-        "custom/power"
+        "custom/left7",
+        "bluetooth",
+        "custom/left8",
+        "custom/notification",
+        "custom/leftin2",
+        "tray"
     ],
     "hyprland/workspaces": {
         "all-outputs": true,
-        "format": " {icon} ",
+        "format": "",
         "format-icons": {
-            "active": "🟢",
-            "empty": "⚫",
-            "persistent": "⚪",
-            "urgent": "🔴"
+            // "active": "🟢",
+            // "empty": "⚫",
+            // "persistent": "⚪",
+            // "urgent": "🔴"
+            "active": "<span foreground='#50FA7B'></span>",
+            "empty": "<span foreground='#282A36'></span>",
+            "persistent": "<span foreground='#F8F8F2'></span>",
+            "urgent": "<span foreground='#FF5555'></span>"
         },
         "persistent-workspaces": {
             "*": 5
         }
     },
-    "bluetooth": {
-        // Hides the module when it is disabled
-        "format-disabled": "",
-        "on-click": "blueman-manager"
-    },
-    "mpris": {
-        "format": " 🎵 {player} ({status}) ➡️ {dynamic}",
-        "dynamic-order": [
-            "title",
-            "artist"
-        ],
-        "dynamic-len": 50,
-        "dynamic-separator": " 🧑‍🎤 "
-    },
-    // Leaving this here just in case something happens with mpris
-    "custom/rhythmbox": {
-        "format": " 🎵 {}",
-        "max-length": 50,
-        "interval": 1,
-        "tooltip": false,
-        "exec": "rhythmbox-client --no-start --print-playing-format=\"%tt:  %aa\"",
-        "on-click": "rhythmbox-client --no-start --play-pause"
-    },
     "hyprland/window": {
         "rewrite": {
-            "(.*) — Zen Browser": "🌎 $1",
-            "(.*):~(.*)": "$2"
+            "(.*) — Zen Browser.*": "<span foreground='#8BE9FD'> </span> $1",
+            "Zen Browser.*": "<span foreground='#8BE9FD'> </span> Zen Browser",
+            "dvt@.*:(.*)": "<span foreground='#BD93F9'></span> $1",
+            "dvt@(.*):~": "<span foreground='#BD93F9'></span> dvt@$1",
+            ".*Discord.*": "<span foreground='#89b4fa'></span> Discord",
+            ".*Webcord.*": "<span foreground='#89b4fa'></span> Webcord",
+            "GNU Image Manipulation Program": "<span foreground='#a6adc8'></span> GNU Image Manipulation Program",
+            "(.*).jpg": "  $1.jpg",
+            "(.*).png": "  $1.png",
+            "(.*).svg": "  $1.svg",
+            "/": "  File Manager",
+            "": "<span foreground='#cba6f7'></span> DVT on Master 󰅂 Hyprland"
+        }
+        //"icon": true,
+        //"icon-size": 20
+    },
+    "temperature": {
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
+        "interval": 5,
+        "min-length": 8,
+        "max-length": 8
+    },
+    "memory": {
+        "states": {
+            "c": 90
         },
-        "icon": true,
-        "icon-size": 20
+        "format": "󰘚 {percentage}%",
+        "format-c": "󰀪 {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB",
+        "interval": 5,
+        "min-length": 7,
+        "max-length": 7
+    },
+    "cpu#usage": {
+        "format": "󰻠 {usage}%",
+        "tooltip": false,
+        "interval": 5,
+        "min-length": 6,
+        "max-length": 6
+    },
+    "custom/center": {
+        "format": "<span foreground='#51a2da'></span>",
+        "tooltip": false
+    },
+    "clock#time": {
+        "format": "󱑂 {:%H:%M}",
+        "tooltip": true,
+        "tooltip-format": "{:%I:%M %p}",
+        "min-length": 8,
+        "max-length": 8
+    },
+    "clock#date": {
+        "format": "󱨴 {:%d %b}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#f5e0dc'><b>{}</b></span>",
+                "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+                "today": "<span color='#f38ba8'><b>{}</b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode"
+        },
+        "min-length": 8,
+        "max-length": 8
+    },
+    "custom/wi": { // TODO: Signal strength
+        "format": "󰤥 ",
+        "tooltip": false
+    },
+    "custom/wifi": {
+        "exec": "nmcli -t -f active,ssid dev wifi | awk -F: '/^yes/ {print $2}'",
+        "interval": 30,
+        "format": "{}", // use "{}" to display network name
+        "tooltip": true,
+        "tooltip-format": "{}",
+        "on-click": "~/.config/waybar/network-menu.sh",
+        "min-length": 7,
+        "max-length": 7
+    },
+    "network": {
+        "format-wifi": " Wifi",
+        "min-length": 7,
+        "max-length": 7
+    },
+    "mpris": {
+        "format": "{status_icon} {artist} - {title}",
+        "format-len": 50,
+        "status-icons": {
+            "playing": "<span color='#50FA7B'>󰎇</span>",
+            "paused": "<span color='#FF5555'>󰎊</span>"
+        },
+        "tooltip-format": "{player} ({status}): {artist} - {album} - {title}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
         "format-source": "{volume}%",
         "format-source-muted": "",
         "format-icons": {
-            "headphone": "",
+            "headphone": "󰋋",
+            "headphone-muted": "󰟎",
             "hands-free": "",
             "headset": "",
             "phone": "",
@@ -85,30 +183,108 @@
                 "",
                 "",
                 ""
+            ],
+            "default-muted": [
+                "󰝟"
             ]
         },
         "on-click": "pavucontrol"
     },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "clock": {
-        "interval": 1,
-        "format": "{:%H:%M — %d %b %Y} \uf017",
-        "tooltip-format": "<tt><big>{calendar}</big></tt>"
+    "bluetooth": {
+        // Hides the module when it is disabled
+        "format-disabled": "Off",
+        "on-click": "blueman-manager"
     },
     "tray": {
         "spacing": 10,
         "show-passive-items": true
     },
-    "custom/power": {
-        "format": " ⏻ ",
-        "on-click": "~/.config/rofi/powermenu/type-5/powermenu.sh"
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{} {icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    // Left arrows
+    "custom/left1": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left2": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left3": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left4": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left5": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left6": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left7": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left8": {
+        "format": "",
+        "tooltip": false
+    },
+    // Right arrows
+    "custom/right1": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right2": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right3": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right4": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right5": {
+        "format": "",
+        "tooltip": false
+    },
+    // Left Inverse
+    "custom/leftin1": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/leftin2": {
+        "format": "",
+        "tooltip": false
+    },
+    // Right Inverse
+    "custom/rightin1": {
+        "format": "",
+        "tooltip": false
     }
 }
