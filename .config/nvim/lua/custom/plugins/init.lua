@@ -94,4 +94,40 @@ return {
       vim.keymap.set('n', '<leader>tu', vim.cmd.UndotreeToggle, { desc = 'Toggle [u]ndo tree' })
     end,
   },
+  {
+    'mikavilpas/yazi.nvim',
+    event = 'VeryLazy',
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        '<leader>e',
+        '<cmd>Yazi<cr>',
+        desc = 'Open yazi at the current file',
+      },
+      -- {
+      -- Open in the current working directory
+      --   '<leader>cw',
+      --   '<cmd>Yazi cwd<cr>',
+      --   desc = "Open the file manager in nvim's working directory",
+      -- },
+    },
+    ---@type YaziConfig
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = '?',
+        open_file_in_horizontal_split = '<c-h>',
+      },
+    },
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = {
+      { '<leader>gl', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+  },
 }

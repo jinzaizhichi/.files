@@ -204,7 +204,7 @@ vim.keymap.set('n', '<C-up>', '<C-w><C-k>', { desc = 'Move focus to the upper wi
 
 ------ DVT's keymaps -------
 -- Open explorer
-vim.keymap.set('n', '<leader>e', vim.cmd.Explore, { desc = 'File [e]xplorer' })
+-- vim.keymap.set('n', '<leader>e', vim.cmd.Explore, { desc = 'File [e]xplorer' })
 
 -- Keep cursor centered
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
@@ -266,6 +266,8 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
+  -- For some reason it don't work with custom plugins
+  change_detection = { enabled = false, notify = false },
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
