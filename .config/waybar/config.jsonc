@@ -69,6 +69,7 @@
             "Zen Browser.*": "<span foreground='#8BE9FD'> </span> Zen Browser",
             "dvt@.*:(.*)": "<span foreground='#BD93F9'></span> $1",
             "dvt@(.*):~": "<span foreground='#BD93F9'></span> dvt@$1",
+            ".*nvim (.*)": "<span foreground='#6ebf60'></span> $1",
             ".*Discord.*": "<span foreground='#89b4fa'></span> Discord",
             ".*Webcord.*": "<span foreground='#89b4fa'></span> Webcord",
             "GNU Image Manipulation Program": "<span foreground='#a6adc8'></span> GNU Image Manipulation Program",
