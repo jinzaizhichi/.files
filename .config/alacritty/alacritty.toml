@@ -1,3 +1,5 @@
+shell = "fish"
+
 [colors.bright]
 black = "#6272A4"
 blue = "#D6ACFF"
