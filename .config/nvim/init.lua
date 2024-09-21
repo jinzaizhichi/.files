@@ -944,6 +944,8 @@ require('lazy').setup({
           textobject = '<C-/>',
         },
       }
+
+      require('mini.starter').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
