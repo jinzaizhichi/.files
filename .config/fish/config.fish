@@ -14,6 +14,11 @@ function fish_title
         set -g previous_command $argv
     end
 
+    # If command has . for current directory, expand directory for title
+    if string match -q "*." $command
+        set command (string replace "." "$PWD" $command)
+    end
+
     # Show the last command ran if there is any
     if test -z $command
         echo "$USER@$HOSTNAME:$PWD";
