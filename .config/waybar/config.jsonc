@@ -50,10 +50,6 @@
         "all-outputs": true,
         "format": "",
         "format-icons": {
-            // "active": "🟢",
-            // "empty": "⚫",
-            // "persistent": "⚪",
-            // "urgent": "🔴"
             "active": "<span foreground='#50FA7B'></span>",
             "empty": "<span foreground='#282A36'></span>",
             "persistent": "<span foreground='#F8F8F2'></span>",
@@ -67,9 +63,10 @@
         "rewrite": {
             "(.*) — Zen Browser.*": "<span foreground='#8BE9FD'> </span> $1",
             "Zen Browser.*": "<span foreground='#8BE9FD'> </span> Zen Browser",
-            "dvt@.*:(.*)": "<span foreground='#BD93F9'></span> $1",
-            "dvt@(.*):~": "<span foreground='#BD93F9'></span> dvt@$1",
+            "(.*)@(.*):(.*) - (.*)": "<span foreground='#BD93F9'></span> $4",
+            "(.*)@(.*):(?!.*-.*)(.*)": "<span foreground='#BD93F9'></span> $1@$2",
             ".*nvim (.*)": "<span foreground='#6ebf60'></span> $1",
+            ".*nvim": "<span foreground='#6ebf60'></span> Neovim",
             ".*Discord.*": "<span foreground='#89b4fa'></span> Discord",
             ".*Webcord.*": "<span foreground='#89b4fa'></span> Webcord",
             "GNU Image Manipulation Program": "<span foreground='#a6adc8'></span> GNU Image Manipulation Program",
@@ -77,10 +74,9 @@
             "(.*).png": "  $1.png",
             "(.*).svg": "  $1.svg",
             "/": "  File Manager",
+            "Yazi: (.*)": "  $1",
             "": "<span foreground='#cba6f7'></span> DVT on Master 󰅂 Hyprland"
         }
-        //"icon": true,
-        //"icon-size": 20
     },
     "temperature": {
         "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon2/temp1_input",
