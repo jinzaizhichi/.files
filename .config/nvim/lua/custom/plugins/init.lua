@@ -19,14 +19,6 @@ return {
       italic_comment = true,
     },
   },
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'ellisonleao/gruvbox.nvim', priority = 1000, config = true },
-  {
-    'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>gf', vim.cmd.Git, { desc = '[G]it [F]ugitive' })
-    end,
-  },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {},
