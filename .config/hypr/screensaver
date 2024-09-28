@@ -20,7 +20,7 @@ def run_screensaver(screensaver):
 
     print(screensaver)
     subprocess.Popen(
-        ["alacritty", "-e", "sh", "-c", f"sleep 0.4 && {screensaver}"])
+        ["kitty", "sh", "-c", f"sleep 0.4 && {screensaver}"])
     time.sleep(0.3)
 
     subprocess.Popen(
