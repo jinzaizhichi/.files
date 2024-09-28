@@ -945,7 +945,13 @@ require('lazy').setup({
         },
       }
 
-      require('mini.starter').setup()
+      local starter = require 'mini.starter'
+      starter.setup {
+        content_hooks = {
+          starter.gen_hook.adding_bullet '┃ ',
+          starter.gen_hook.aligning('center', 'center'),
+        },
+      }
     end,
   },
   { -- Highlight, edit, and navigate code
