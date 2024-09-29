@@ -211,6 +211,7 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('n', 'G', 'Gzz')
 
 -- Move line up or down
 vim.keymap.set('v', 'J', ":move '<-2<CR>gv=gv")
@@ -929,6 +930,11 @@ require('lazy').setup({
 
       local starter = require 'mini.starter'
       starter.setup {
+        items = {
+          starter.sections.recent_files(10, false, false),
+          starter.sections.telescope(),
+          starter.sections.builtin_actions(),
+        },
         content_hooks = {
           starter.gen_hook.adding_bullet '┃ ',
           starter.gen_hook.aligning('center', 'center'),
