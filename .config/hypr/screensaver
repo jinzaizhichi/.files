@@ -9,7 +9,8 @@ screensavers = [
     "~/.local/bin/pipes.sh -r 0 -R -p 5",
     "asciiquarium",
     "cmatrix -r",
-    "~/repo_clones/lavat/lavat -k black -c magenta -s 3 -r 1 -b 10"
+    "~/repo_clones/lavat/lavat -k black -c magenta -s 3 -r 1 -b 10",
+    "conway-screensaver"
 ]
 
 
