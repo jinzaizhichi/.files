@@ -88,4 +88,5 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # https://gitlab.com/dwt1/shell-color-scripts
 colorscript random
 
+zoxide init fish | source
 starship init fish | source
