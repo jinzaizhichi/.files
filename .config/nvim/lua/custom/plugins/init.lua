@@ -66,16 +66,16 @@ return {
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, { desc = 'Harpoon [U]I' })
 
-      vim.keymap.set('n', '<C-S-n>', function()
+      vim.keymap.set('n', '<A-n>', function()
         harpoon:list():select(1)
       end)
-      vim.keymap.set('n', '<C-S-e>', function()
+      vim.keymap.set('n', '<A-e>', function()
         harpoon:list():select(2)
       end)
-      vim.keymap.set('n', '<C-S-i>', function()
+      vim.keymap.set('n', '<A-i>', function()
         harpoon:list():select(3)
       end)
-      vim.keymap.set('n', '<C-S-o>', function()
+      vim.keymap.set('n', '<A-o>', function()
         harpoon:list():select(4)
       end)
     end,
@@ -109,7 +109,10 @@ return {
       open_for_directories = false,
       keymaps = {
         show_help = '?',
-        open_file_in_horizontal_split = '<c-h>',
+        open_file_in_vertical_split = '<A-v>',
+        open_file_in_horizontal_split = '<A-h>',
+        open_file_in_tab = '<A-t>',
+        grep_in_directory = '<A-s>',
       },
     },
   },
