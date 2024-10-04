@@ -179,7 +179,7 @@ vim.g.netrw_bufsettings = 'nu rnu'
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<ESC>', ':nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -214,8 +214,8 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', 'G', 'Gzz')
 
 -- Move line up or down
-vim.keymap.set('v', 'J', ":move '<-2<CR>gv=gv")
-vim.keymap.set('v', 'K', ":move '>+1<CR>gv=gv")
+vim.keymap.set('n', 'j', "v:move '<-2<CR>gv=gv<ESC>")
+vim.keymap.set('n', 'k', "v:move '>+1<CR>gv=gv<ESC>")
 
 -- Have cursor stay in place when joining lines together
 vim.keymap.set('n', 'J', 'mzJ`z')
