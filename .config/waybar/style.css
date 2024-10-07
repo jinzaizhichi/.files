@@ -11,7 +11,7 @@
 @define-color pink #FF79C6;
 
 * {
-	font-family: "JetBrainsMono Nerd Font";
+	font-family: "JetBrainsMono Nerd Font Mono";
 	font-weight: bold;
 	font-size: 11px;
 	padding: 0;
@@ -59,6 +59,10 @@ window#waybar {
 	color: @foreground;
 	margin-top: 3px;
 	margin-bottom: 3px;
+}
+
+#workspaces * {
+	font-size: 14px;
 }
 
 #workspaces button {
@@ -143,30 +147,32 @@ window#waybar {
 /* Center */
 #custom-leftin1 {
 	color: @selection;
-	font-size: 16.5pt;
-	margin-top: 2px;
+	margin-top: 1px;
+	font-size: 16pt;
 	text-shadow: 1px 0px 2px rgba(0, 0, 0, 1);
 }
 
 #custom-left5 {
+	margin-left: 3px;
 	text-shadow: -2px 0px 2px rgba(0, 0, 0, 1);
 }
 
 #custom-center {
 	background-color: @selection;
-	font-size: 14px;
+	font-size: 20px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 }
 
 #custom-right2 {
+	margin-right: 3px;
 	text-shadow: 2px 0px 2px rgba(0, 0, 0, 1);
 }
 
 #custom-rightin1 {
 	color: @selection;
-	font-size: 16.5pt;
-	margin-top: 2px;
+	margin-top: 1px;
+	font-size: 16pt;
 	text-shadow: -1px 0px 2px rgba(0, 0, 0, 1);
 }
 
@@ -183,6 +189,7 @@ window#waybar {
 	background-color: rgba(68, 71, 90, 0.7);
 	margin-top: 3px;
 	margin-bottom: 3px;
+	padding-right: 2px;
 }
 
 /* Clock Date */
@@ -191,6 +198,8 @@ window#waybar {
 	padding-left: 1px;
 	margin-top: 3px;
 	margin-bottom: 3px;
+	padding-left: 2px;
+	padding-right: 2px;
 }
 
 #custom-right4 {
@@ -221,6 +230,7 @@ window#waybar {
 }
 
 #custom-right5 {
+	margin-right: 2px;
 	color: rgba(68, 71, 90, 0.7);
 }
 
@@ -274,8 +284,8 @@ window#waybar {
 
 #custom-leftin2 {
 	color: @selection;
-	font-size: 16.5pt;
-	margin-top: 2px;
+	margin-top: 1px;
+	font-size: 16pt;
 	text-shadow: 1px 0px 2px rgba(0, 0, 0, 1);
 }
 
