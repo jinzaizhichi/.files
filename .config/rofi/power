@@ -1,12 +1,14 @@
 #!/usr/bin/bash
 
+dir="$HOME/.config/rofi/power.rasi"
+
 shutdown=" Shutdown"
 reboot=" Reboot"
 suspend=" Suspend"
 lock=" Lock"
 logout=" Logout"
 
-option=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu)
+option=$(echo -e "$shutdown\n$reboot\n$logout\n$lock\n$suspend" | rofi -dmenu -theme "$dir" -lines 5)
 
 case "$option" in
     "$shutdown")
