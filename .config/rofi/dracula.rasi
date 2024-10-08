@@ -1,0 +1,119 @@
+// See https://github.com/davatorium/rofi/blob/next/doc/rofi-theme.5.markdown#Layout
+
+configuration {
+    show-icons:      true;
+    display-drun:    "";
+    disable-history: false;
+}
+
+* {
+    font: "JetBrainsMonoNL Nerd Font 16";
+    foreground: #F8F8F2;
+    background-color: #282A36;
+    active-background: #44475A;
+    urgent-background: #FF5555;
+    urgent-foreground: #282A36;
+    selected-background: @active-background;
+    selected-urgent-background: @urgent-background;
+    selected-active-background: @active-background;
+    separatorcolor: @active-background;
+    bordercolor: @foreground;
+}
+
+// Actual entire window
+#window {
+    background-color: @background-color;
+    width:            15%;
+    border:           3;
+    border-radius:    100;
+    border-color:     @bordercolor;
+    padding:          50;
+}
+
+// Only direct child of window, contans everything else
+#mainbox {
+    background-color: @separatorcolor; // Act as divider
+    border:  0;
+    padding: 0;
+}
+
+// Input box thing
+#inputbar {
+    spacing:    0;
+    text-color: @foreground;
+    padding:    1px;
+    children:   [ textbox-prompt-colon,entry ];
+}
+#entry {
+    spacing:    0;
+    text-color: @foreground;
+}
+#textbox-prompt-colon {
+    expand:     false;
+    str:        "󱞫";
+    padding:     0em 0.3em 0em 0em;
+    text-color: @foreground;
+}
+
+// Error message container, only shows up when there is an error
+#message {
+    border:       1px;
+    border-color: @foreground;
+}
+
+// Error message itself
+#textbox {
+    background-color: @urgent-background;
+    text-color: @foreground;
+}
+
+// List of programs
+#listview {
+    spacing: 2px;
+    padding: 4px 0px 0px;
+}
+#element {
+    border:  0;
+    padding: 3px;
+    border-radius: 10px;
+}
+#element.normal.normal {
+    background-color: @background-color;
+    text-color:       @foreground;
+}
+#element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+#element.normal.active {
+    background-color: @active-background;
+    text-color:       @foreground;
+}
+#element.selected.normal {
+    background-color: @selected-background;
+    text-color:       @foreground;
+}
+#element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @foreground;
+}
+#element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @foreground;
+}
+#element.alternate.normal {
+    background-color: @background-color;
+    text-color:       @foreground;
+}
+#element.alternate.urgent {
+    background-color: @urgent-background;
+    text-color:       @foreground;
+}
+#element.alternate.active {
+    background-color: @active-background;
+    text-color:       @foreground;
+}
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}

@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+
+shutdown=" Shutdown"
+reboot=" Reboot"
+suspend=" Suspend"
+lock=" Lock"
+logout=" Logout"
+
+option=$(echo -e "$lock\n$suspend\n$logout\n$reboot\n$shutdown" | rofi -dmenu)
+
+case "$option" in
+    "$shutdown")
+        systemctl poweroff
+        ;;
+    "$reboot")
+        systemctl reboot
+        ;;
+    "$suspend")
+        systemctl suspend
+        ;;
+    "$lock")
+        # TODO: add lock behavior, betterlockscreen?
+        ;;
+    "$logout")
+        hyprctl dispatch exit
+        ;;
+esac
