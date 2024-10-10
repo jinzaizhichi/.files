@@ -216,6 +216,8 @@ vim.keymap.set('n', 'G', 'Gzz')
 -- Move line up or down
 vim.keymap.set('n', 'j', "v:move '<-2<CR>gv=gv<ESC>")
 vim.keymap.set('n', 'k', "v:move '>+1<CR>gv=gv<ESC>")
+vim.keymap.set('x', 'j', ":move '<-2<CR>gv=gv")
+vim.keymap.set('x', 'k', ":move '>+1<CR>gv=gv")
 
 -- Have cursor stay in place when joining lines together
 vim.keymap.set('n', 'J', 'mzJ`z')
@@ -507,6 +509,7 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
+      vim.lsp.set_log_level 'off'
       -- Brief aside: **What is LSP?**
       --
       -- LSP is an initialism you've probably heard, but might not understand what it is.
@@ -686,7 +689,6 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'bash-language-server',
-        'hyprls',
         'html-lsp',
         'htmx-lsp',
         'css-lsp',
