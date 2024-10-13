@@ -85,8 +85,17 @@ set -U fish_user_paths $(go env GOPATH)/bin $HOME/.local/bin
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-# https://gitlab.com/dwt1/shell-color-scripts
-colorscript random
+# Display a lil something when starting the shell
+set random_num (math (random) % 2)
+switch $random_num
+    case 0
+        # https://gitlab.com/dwt1/shell-color-scripts
+        colorscript random
+    case 1
+        fortune ascii-art
+    case 2
+        fortune wisdom | cowsay
+end
 
 zoxide init fish | source
 starship init fish | source
