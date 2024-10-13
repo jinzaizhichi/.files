@@ -7,7 +7,7 @@ configuration {
 }
 
 * {
-    font: "JetBrainsMonoNL Nerd Font 16";
+    font: "JetBrainsMono Nerd Font 16";
     foreground: #F8F8F2;
     background-color: #282A36;
     active-background: #44475A;
