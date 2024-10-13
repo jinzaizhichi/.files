@@ -142,12 +142,6 @@ vim.opt.timeoutlen = 300
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
@@ -173,6 +167,10 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 
 vim.g.netrw_bufsettings = 'nu rnu'
+
+-- Use indent based folding, and have all folds opened by default
+vim.opt.foldmethod = 'indent'
+vim.opt.foldenable = false
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -230,6 +228,9 @@ vim.keymap.set('n', 'Q', '<nop>')
 
 -- Rename the word my cursor is on using vim's substitute thing
 vim.keymap.set('n', '<leader>rs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- Highlight everything
+vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -739,6 +740,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        templ = { 'templ' },
+        html = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
