@@ -5,10 +5,10 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
-      lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
-      }
-
+      lint.linters_by_ft = lint.linters_by_ft or {}
+      -- lint.linters_by_ft = {
+      --   markdown = { 'vale' },
+      -- }
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
       -- instead set linters_by_ft like this:
       -- lint.linters_by_ft = lint.linters_by_ft or {}
@@ -22,7 +22,7 @@ return {
       --   inko = { "inko" },
       --   janet = { "janet" },
       --   json = { "jsonlint" },
-      --   markdown = { "vale" },
+      --   markdown = { 'vale' },
       --   rst = { "vale" },
       --   ruby = { "ruby" },
       --   terraform = { "tflint" },
@@ -48,12 +48,10 @@ return {
       local toggle_lint = function()
         if lintEnabled then
           lintEnabled = false
-          -- vim.diagnostic.reset(nil, 0)
           vim.diagnostic.hide(nil, 0)
         else
           lintEnabled = true
           vim.diagnostic.show(nil, 0)
-          -- lint.try_lint()
         end
       end
 

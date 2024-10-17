@@ -169,6 +169,8 @@ vim.opt.termguicolors = true
 vim.g.netrw_bufsettings = 'nu rnu'
 
 -- Use indent based folding, and have all folds opened by default
+-- vim.opt.foldmethod = 'expr'
+-- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldmethod = 'indent'
 vim.opt.foldenable = false
 
@@ -743,6 +745,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         templ = { 'templ' },
         html = { 'prettier' },
+        markdown = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
