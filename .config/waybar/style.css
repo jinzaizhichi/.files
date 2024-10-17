@@ -1,3 +1,4 @@
+@define-color background-darder rgba(30, 31, 41, 230);
 @define-color background #282A36;
 @define-color foreground #F8F8F2;
 @define-color selection #44475A;
@@ -20,6 +21,7 @@
 
 window#waybar {
 	background-color: @background;
+	color: @foreground;
 	border-radius: 0 0 10px 10px;
 }
 
