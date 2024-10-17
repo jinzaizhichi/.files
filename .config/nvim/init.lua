@@ -220,8 +220,9 @@ vim.keymap.set('x', 'k', ":move '>+1<CR>gv=gv")
 -- Have cursor stay in place when joining lines together
 vim.keymap.set('n', 'J', 'mzJ`z')
 
--- Paste without copying deleted word
-vim.keymap.set('x', '<leader>p', [["_dp]])
+-- Stop automatically copying
+vim.keymap.set('x', 'p', [["_dp]])
+vim.keymap.set('n', 'C', '"_C')
 
 -- Disable Q because apparently it's trash lmao
 vim.keymap.set('n', 'Q', '<nop>')
