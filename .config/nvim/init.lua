@@ -746,6 +746,7 @@ require('lazy').setup({
         templ = { 'templ' },
         html = { 'prettier' },
         markdown = { 'prettier' },
+        typescriptreact = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
