@@ -43,6 +43,7 @@ config.colors = {
 
 	cursor_bg = dracula.foreground,
 	cursor_fg = dracula.background,
+	cursor_border = dracula.foreground,
 
 	selection_bg = dracula.foreground,
 	selection_fg = dracula.background,
@@ -206,5 +207,7 @@ config.key_tables = {
 		},
 	},
 }
+
+config.default_cursor_style = "SteadyBar"
 
 return config
