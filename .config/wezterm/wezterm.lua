@@ -147,6 +147,30 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = act.PasteFrom("Clipboard"),
 	},
+	{
+		key = "u",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			local process_name = pane:get_foreground_process_name()
+			if string.find(process_name, "fish") then
+				win:perform_action(act.ScrollByPage(-0.5), pane)
+			else
+				win:perform_action(act.SendKey({ key = "u", mods = "CTRL" }), pane)
+			end
+		end),
+	},
+	{
+		key = "d",
+		mods = "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			local process_name = pane:get_foreground_process_name()
+			if string.find(process_name, "fish") then
+				win:perform_action(act.ScrollByPage(0.5), pane)
+			else
+				win:perform_action(act.SendKey({ key = "d", mods = "CTRL" }), pane)
+			end
+		end),
+	},
 }
 
 -- Bind moving to tab index by ALT+1 to 5
