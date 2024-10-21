@@ -39,7 +39,7 @@ blinking = "On"
 builtin_box_drawing = true
 
 [font.normal]
-family = "SauceCodePro Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 
 [window]
 opacity = 0.85
