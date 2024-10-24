@@ -121,6 +121,28 @@ config.window_padding = {
 	bottom = 0,
 }
 
+--- Set a keymap for an action that only works when in Fish shell, otherwise send the keymap to
+--- whatever program is running.
+--- See https://wezfurlong.org/wezterm/config/keys.html
+--- @param key string Key for activating the action.
+--- @param mods string Modifiers required for activating the action.
+--- @param action any Action to activate.
+--- @return table
+local function setKeymap(key, mods, action)
+	return {
+		key = key,
+		mods = mods,
+		action = wezterm.action_callback(function(win, pane)
+			local process_name = pane:get_foreground_process_name()
+			if string.find(process_name, "fish") then
+				win:perform_action(action, pane)
+			else
+				win:perform_action(act.SendKey({ key = key, mods = mods }), pane)
+			end
+		end),
+	}
+end
+
 config.disable_default_key_bindings = true
 config.keys = {
 	{
@@ -147,30 +169,12 @@ config.keys = {
 		mods = "SHIFT|CTRL",
 		action = act.PasteFrom("Clipboard"),
 	},
-	{
-		key = "u",
-		mods = "CTRL",
-		action = wezterm.action_callback(function(win, pane)
-			local process_name = pane:get_foreground_process_name()
-			if string.find(process_name, "fish") then
-				win:perform_action(act.ScrollByPage(-0.5), pane)
-			else
-				win:perform_action(act.SendKey({ key = "u", mods = "CTRL" }), pane)
-			end
-		end),
-	},
-	{
-		key = "d",
-		mods = "CTRL",
-		action = wezterm.action_callback(function(win, pane)
-			local process_name = pane:get_foreground_process_name()
-			if string.find(process_name, "fish") then
-				win:perform_action(act.ScrollByPage(0.5), pane)
-			else
-				win:perform_action(act.SendKey({ key = "d", mods = "CTRL" }), pane)
-			end
-		end),
-	},
+	setKeymap("u", "CTRL", act.ScrollByPage(-0.5)),
+	setKeymap("d", "CTRL", act.ScrollByPage(0.5)),
+	setKeymap("e", "CTRL", act.ScrollByLine(1)),
+	setKeymap("y", "CTRL", act.ScrollByLine(-1)),
+	setKeymap("Home", "", act.ScrollToTop),
+	setKeymap("End", "", act.ScrollToBottom),
 }
 
 -- Bind moving to tab index by ALT+1 to 5
