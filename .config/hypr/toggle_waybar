@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # We want to replace because it'll show this process in the output
     if b"waybar" in (o.stdout.replace(b"toggle_waybar", b"")):
         subprocess.Popen(["killall", "waybar"])
-        for gap in range(10, 0, -1):
+        for gap in range(10, -1, -1):
             subprocess.Popen(
                 ["hyprctl", f"keyword general:gaps_out {gap}"]).wait()
             time.sleep(0.1)
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     else:
         subprocess.Popen(["waybar"])
         # Kinda animate adding the gaps
-        for gap in range(1, 11):
+        for gap in range(0, 11):
             subprocess.Popen(
                 ["hyprctl", f"keyword general:gaps_out {gap}"]).wait()
             time.sleep(0.1)
