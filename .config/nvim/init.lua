@@ -300,6 +300,13 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      current_line_blame_opts = {
+        delay = 0,
+      },
+      preview_config = {
+        border = 'rounded',
+      },
+      word_diff = true,
     },
   },
 
