@@ -7,7 +7,14 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+    require('mini.ai').setup {
+      mappings = {
+        goto_left = nil,
+        goto_right = nil,
+      },
+      n_lines = 500,
+      search_method = 'cover_or_nearest',
+    }
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
@@ -185,6 +192,12 @@ return { -- Collection of various small independent plugins/modules
       content_hooks = {
         starter.gen_hook.adding_bullet '┃ ',
         starter.gen_hook.aligning('center', 'center'),
+      },
+    }
+
+    require('mini.jump').setup {
+      delay = {
+        highlight = -1,
       },
     }
   end,
