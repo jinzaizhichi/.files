@@ -21,10 +21,10 @@ return {
     open_for_directories = false,
     keymaps = {
       show_help = '?',
-      open_file_in_vertical_split = '<A-v>',
-      open_file_in_horizontal_split = '<A-h>',
-      open_file_in_tab = '<A-t>',
-      grep_in_directory = '<A-s>',
+      open_file_in_vertical_split = '<C-v>',
+      open_file_in_horizontal_split = '<C-h>',
+      open_file_in_tab = '<C-t>',
+      grep_in_directory = '<C-g>',
     },
   },
 }

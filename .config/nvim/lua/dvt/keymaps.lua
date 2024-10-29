@@ -19,16 +19,6 @@ vim.keymap.set('n', '<ESC>', ':nohlsearch<CR>')
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TODO: See wassup with this
--- Keybinds to make split navigation easier.
---  Use CTRL+arrows to switch between windows
---
---  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<A-left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<A-right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<A-down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<A-up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 ------ DVT's keymaps -------
 -- Open explorer
 -- vim.keymap.set('n', '<leader>e', vim.cmd.Explore, { desc = 'File [e]xplorer' })
