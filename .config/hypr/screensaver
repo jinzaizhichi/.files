@@ -23,13 +23,13 @@ def run_screensaver(screensaver):
     # We want to increase font size for lavat screensaver but decrease for others
     if screensaver == screensavers[3]:
         subprocess.Popen(
-            ["kitty", "-o", "font_size=16", "sh", "-c", f"sleep 0.4 && {screensaver}"])
+            ["wezterm-gui", "--config", "font_size=16", "start", "-e", "sh", "-c", f"sleep 0.4 && {screensaver}"])
     elif screensaver == screensavers[5]:
         subprocess.Popen(
-            ["kitty", "-o", "font_size=24", "sh", "-c", f"sleep 0.4 && {screensaver}"])
+            ["wezterm-gui", "--config", "font_size=24", "start", "-e", "sh", "-c", f"sleep 0.4 && {screensaver}"])
     else:
         subprocess.Popen(
-            ["kitty", "-o", "font_size=8", "sh", "-c", f"sleep 0.4 && {screensaver}"])
+            ["wezterm-gui", "--config", "font_size=8", "start", "-e", "sh", "-c", f"sleep 0.4 && {screensaver}"])
     time.sleep(0.3)
 
     subprocess.Popen(
