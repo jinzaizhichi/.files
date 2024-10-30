@@ -1,3 +1,16 @@
+-- I want to be able to toggle autoformatting on save
+-- See https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
+vim.g.enable_autoformat = true
+vim.keymap.set('n', '<leader>tf', function()
+  vim.g.enable_autoformat = not vim.g.enable_autoformat
+
+  if vim.g.enable_autoformat then
+    print 'Autoformatting enabled'
+  else
+    print 'Autoformatting disabled'
+  end
+end, { desc = 'Toggle auto formatting' })
+
 return { -- Autoformat
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -15,6 +28,11 @@ return { -- Autoformat
   opts = {
     notify_on_error = true,
     format_on_save = function(bufnr)
+      -- Do not autoformat if it is disabled
+      if not vim.g.enable_autoformat then
+        return
+      end
+
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style. You can add additional
       -- languages here or re-enable it for the disabled ones.
