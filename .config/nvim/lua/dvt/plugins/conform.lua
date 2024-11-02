@@ -1,16 +1,3 @@
--- I want to be able to toggle autoformatting on save
--- See https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
-vim.g.enable_autoformat = true
-vim.keymap.set('n', '<leader>tf', function()
-  vim.g.enable_autoformat = not vim.g.enable_autoformat
-
-  if vim.g.enable_autoformat then
-    print 'Autoformatting enabled'
-  else
-    print 'Autoformatting disabled'
-  end
-end, { desc = 'Toggle auto formatting' })
-
 return { -- Autoformat
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
@@ -21,8 +8,20 @@ return { -- Autoformat
       function()
         require('conform').format { async = true, lsp_fallback = true }
       end,
-      mode = '',
       desc = '[F]ormat buffer',
+    },
+    {
+      '<leader>tf',
+      function()
+        vim.g.enable_autoformat = not vim.g.enable_autoformat
+
+        if vim.g.enable_autoformat then
+          print 'Autoformatting enabled'
+        else
+          print 'Autoformatting disabled'
+        end
+      end,
+      desc = 'Toggle auto formatting',
     },
   },
   opts = {
@@ -55,4 +54,9 @@ return { -- Autoformat
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   },
+  init = function()
+    -- I want to be able to toggle autoformatting on save
+    -- See https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
+    vim.g.enable_autoformat = true
+  end,
 }
