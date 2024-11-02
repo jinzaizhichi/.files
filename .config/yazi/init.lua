@@ -11,3 +11,7 @@ function Linemode:size_and_mtime()
 	local filesize = self._file:size()
 	return ui.Line(string.format("%s - %s", filesize and ya.readable_size(filesize) or "N/A", modifiedTime))
 end
+
+require("starship"):setup({ config_file = "/home/dvt/.config/yazi/starship.toml" })
+require("relative-motions"):setup({ show_numbers = "relative_absolute" })
+require("git"):setup()
