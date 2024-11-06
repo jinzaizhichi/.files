@@ -16,10 +16,6 @@ screensavers = [
 
 
 def run_screensaver(screensaver):
-    subprocess.Popen(
-        ["hyprctl", "dispatch", "togglespecialworkspace", "magic"]).wait()
-    time.sleep(0.1)
-
     # We want to increase font size for lavat screensaver but decrease for others
     if screensaver == screensavers[3]:
         subprocess.Popen(
@@ -30,7 +26,7 @@ def run_screensaver(screensaver):
     else:
         subprocess.Popen(
             ["wezterm-gui", "--config", "font_size=8", "start", "-e", "sh", "-c", f"sleep 0.4 && {screensaver}"])
-    time.sleep(0.3)
+    time.sleep(0.1)
 
     subprocess.Popen(
         ["hyprctl", "dispatch fullscreen 0"]).wait()
@@ -48,18 +44,16 @@ def can_run():
 
     # Get active workspace
     for line in active_window_output.split("\n"):
-        if line.startswith("\tworkspace: "):
-            workspace = int(line.split(": ")[1].split(" (")[0])
-        elif line.startswith("\tfullscreen: "):
+        if line.startswith("\tfullscreen: "):
             is_fullscreen = line.split(": ")[1] == "1"
+            break
 
-    # I think negative workspace is special workspace
-    return workspace >= 0 and not is_fullscreen
+    return not is_fullscreen
 
 
 if __name__ == '__main__':
     if not can_run():
-        print("Will not run when in special workspace and fullscreen")
+        print("Will not run when current window is in fullscreen")
         sys.exit(1)
 
     screensaver_index = random.randint(0, len(screensavers)-1)
