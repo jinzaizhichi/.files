@@ -1,0 +1,12 @@
+resize_algorithm = none
+hotspot_x = 0.50
+hotspot_y = 0.50
+
+define_size = 24, crosshair_000.png, 50
+define_size = 30, crosshair_001.png, 50
+define_size = 36, crosshair_002.png, 50
+define_size = 48, crosshair_003.png, 50
+define_size = 60, crosshair_004.png, 50
+define_size = 72, crosshair_005.png, 50
+
+define_override = cross
