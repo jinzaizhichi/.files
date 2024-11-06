@@ -20,7 +20,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons', enabled = true },
+    'debugloop/telescope-undo.nvim',
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -49,9 +50,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
       --  All the info you're looking for is in `:help telescope.setup()`
       --
       defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
         layout_strategy = 'center',
         sorting_strategy = 'ascending',
         layout_config = {
@@ -68,6 +66,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
+        },
+        undo = {
+          side_by_side = true,
+          layout_strategy = 'vertical',
+          layout_config = {
+            preview_height = 0.6,
+          },
+          mappings = {
+            i = {
+              ['<CR>'] = require('telescope-undo.actions').restore,
+            },
+            n = {
+              ['<CR>'] = require('telescope-undo.actions').restore,
+            },
+          },
         },
       },
     }
@@ -132,5 +145,9 @@ return { -- Fuzzy Finder (files, lsp, etc)
     vim.keymap.set('n', '<leader>sc', function()
       builtin.find_files { cwd = vim.fn.stdpath 'config' }
     end, { desc = '[S]earch [C]onfig files' })
+
+    -- Enable telescope undo tree
+    require('telescope').load_extension 'undo'
+    vim.keymap.set('n', '<leader>tu', ':Telescope undo<cr>', { desc = 'Toggle [u]ndo tree' })
   end,
 }
