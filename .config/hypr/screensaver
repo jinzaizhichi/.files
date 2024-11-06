@@ -45,7 +45,7 @@ def can_run():
     # Get active workspace
     for line in active_window_output.split("\n"):
         if line.startswith("\tfullscreen: "):
-            is_fullscreen = line.split(": ")[1] == "1"
+            is_fullscreen = line.split(": ")[1] == "2"
             break
 
     return not is_fullscreen
