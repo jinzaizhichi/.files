@@ -61,8 +61,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
             height = 0.3,
           },
         },
+        -- Disable all default mappings
+        default_mappings = {},
+        mappings = {
+          i = {
+            -- Basically disable normal mode when using telescope
+            ['<ESC>'] = require('telescope.actions').close,
+            ['<CR>'] = require('telescope.actions').select_default,
+            ['<C-h>'] = require('telescope.actions').select_horizontal,
+            ['<C-v>'] = require('telescope.actions').select_vertical,
+            ['<UP>'] = require('telescope.actions').move_selection_previous,
+            ['<DOWN>'] = require('telescope.actions').move_selection_next,
+            ['<C-u>'] = require('telescope.actions').preview_scrolling_up,
+            ['<C-d>'] = require('telescope.actions').preview_scrolling_down,
+            ['<C-q>'] = require('telescope.actions').send_to_qflist,
+            ['<C-/>'] = require('telescope.actions').which_key,
+          },
+        },
       },
-      -- pickers = {}
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
