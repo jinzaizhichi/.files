@@ -107,6 +107,9 @@ return { -- Autocompletion
         --  completions whenever it has completion options available.
         ['<C-CR>'] = cmp.mapping.complete {},
 
+        -- [H]ide completion window
+        ['<C-h>'] = cmp.mapping.abort(),
+
         -- Thanks TJ, but when you have QMK (I use QMK btw), you can use arrow keys in home row
         -- Think of <c-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
