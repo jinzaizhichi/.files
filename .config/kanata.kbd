@@ -1,0 +1,35 @@
+(defcfg
+    process-unmapped-keys yes
+)
+
+(defsrc
+    tab     p
+    caps    '
+    spc
+    a ;
+)
+
+(deflayer base
+    caps    '
+    tab     p
+    @nav
+    @cha
+    @chs
+)
+
+(deflayermap (nav-layer)
+    a lmeta s lalt d lshift f lctrl
+    j left k down l up ; right
+)
+
+(defalias
+    nav (tap-hold 200 200 spc (layer-while-held nav-layer))
+    cha (chord escape-combo a)
+    chs (chord escape-combo ;)
+)
+
+(defchords escape-combo 100
+    (a  ) a
+    (  ;) ;
+    (a ;) esc
+)
