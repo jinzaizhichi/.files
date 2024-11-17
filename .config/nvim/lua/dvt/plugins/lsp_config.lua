@@ -181,6 +181,16 @@ return {
             },
           },
         },
+        htmx = {
+          filetypes = {
+            'gohtml',
+            'gohtmltmpl',
+            'handlebars',
+            'html',
+            'mustache',
+            'templ',
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed

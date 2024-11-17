@@ -1,16 +1,19 @@
 return {
-  'norcalli/nvim-colorizer.lua',
+  'NvChad/nvim-colorizer.lua',
   config = function()
-    require('colorizer').setup({ '*' }, {
-      RGB = true,
-      RRGGBB = true,
-      RRGGBBAA = true,
-      rgb_fn = true,
-      hsl_fn = true,
-      css = true,
-      css_fn = true,
-      mode = 'background',
-    })
+    require('colorizer').setup {
+      filetypes = { '*' },
+      user_default_options = {
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        css = true,
+        css_fn = true,
+        mode = 'background',
+      },
+    }
 
     vim.api.nvim_create_autocmd({ 'BufEnter' }, {
       pattern = { '*' },

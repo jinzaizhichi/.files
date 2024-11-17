@@ -77,7 +77,7 @@ vim.opt.termguicolors = true
 vim.g.netrw_bufsettings = 'nu rnu'
 
 -- Use indent based folding, and have all folds opened by default
--- vim.opt.foldmethod = 'expr'
--- vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.opt.foldmethod = 'indent'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- vim.opt.foldmethod = 'indent'
 vim.opt.foldenable = false
