@@ -16,7 +16,6 @@ wezterm.on("update-status", function(window, pane)
 		c.enable_scroll_bar = false
 	end
 	window:set_config_overrides(c)
-	wezterm:reload_configuration()
 	return true
 end)
 
