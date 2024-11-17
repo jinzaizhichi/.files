@@ -1,5 +1,3 @@
-shell = "fish"
-
 [colors.bright]
 black = "#6272A4"
 blue = "#D6ACFF"
@@ -47,3 +45,6 @@ opacity = 0.85
 [window.dimensions]
 columns = 140
 lines = 40
+
+[terminal]
+shell = "fish"
