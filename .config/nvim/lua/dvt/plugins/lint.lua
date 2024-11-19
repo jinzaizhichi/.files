@@ -3,6 +3,9 @@ return {
   { -- Linting
     'mfussenegger/nvim-lint',
     event = { 'BufReadPre', 'BufNewFile' },
+    init = function()
+      vim.g.lint_enabled = true
+    end,
     config = function()
       local lint = require 'lint'
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -40,14 +43,14 @@ return {
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
       -- Allows toggling the linter on or off
-      local lintEnabled = true
       local toggle_lint = function()
-        if lintEnabled then
-          lintEnabled = false
-          vim.diagnostic.hide(nil, 0)
-        else
-          lintEnabled = true
+        vim.g.lint_enabled = not vim.g.lint_enabled
+        if vim.g.lint_enabled then
           vim.diagnostic.show(nil, 0)
+          print 'Lint enabled'
+        else
+          vim.diagnostic.hide(nil, 0)
+          print 'Lint disabled'
         end
       end
 
@@ -55,7 +58,7 @@ return {
       vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
         group = lint_augroup,
         callback = function()
-          if lintEnabled then
+          if vim.g.lint_enabled then
             lint.try_lint()
           end
         end,

@@ -119,6 +119,12 @@ return {
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>ti', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+
+              if vim.lsp.inlay_hint.is_enabled { bufnr = event.buf } then
+                print 'Inlay hints enabled'
+              else
+                print 'Inlay hints disabled'
+              end
             end, '[T]oggle [I]nlay Hints')
           end
         end,
