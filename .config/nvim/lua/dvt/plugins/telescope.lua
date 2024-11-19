@@ -78,6 +78,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
           },
         },
       },
+      pickers = {
+        help_tags = {
+          mappings = {
+            i = {
+              ['<CR>'] = require('telescope.actions').select_vertical,
+            },
+          },
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
