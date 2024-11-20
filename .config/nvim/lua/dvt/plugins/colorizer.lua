@@ -15,15 +15,14 @@ return {
   keys = {
     {
       '<leader>th',
-      -- '#000000',
       function()
         vim.cmd 'ColorizerToggle'
         vim.g.highlighting_enabled = not vim.g.highlighting_enabled
 
         if vim.g.highlighting_enabled then
-          print 'Highlighting enabled'
+          require('fidget').notify('Highlighting enabled', nil, { key = 'toggle_highlight' })
         else
-          print 'Highlighting disabled'
+          require('fidget').notify('Highlighting disabled', nil, { key = 'toggle_highlight' })
         end
       end,
       desc = 'Toggle [H]ighlighting',
