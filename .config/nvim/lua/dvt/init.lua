@@ -17,16 +17,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.diagnostic.config {
-  float = {
-    border = 'rounded',
-  },
-}
-
+-- Configure diagnostics
 -- Change diagnostic symbols in the sign column (gutter)
 local signs = { ERROR = '', WARN = '', HINT = '', INFO = '' }
 local diagnostic_signs = {}
 for type, icon in pairs(signs) do
   diagnostic_signs[vim.diagnostic.severity[type]] = icon
 end
-vim.diagnostic.config { signs = { text = diagnostic_signs } }
+
+vim.diagnostic.config {
+  float = { border = 'rounded' },
+  signs = { text = diagnostic_signs },
+}
