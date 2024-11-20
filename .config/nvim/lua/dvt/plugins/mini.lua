@@ -59,9 +59,7 @@ return { -- Collection of various small independent plugins/modules
         if not has_devicons then
           return
         end
-        -- TODO: Use filetype instead of filename to fix color when file doesn't have extensions
-        -- (when using shebang)
-        local icon, highlight = devicons.get_icon(vim.fn.expand '%:t', nil, { default = true })
+        local icon, highlight = devicons.get_icon_by_filetype(filetype, { default = true })
         filetype = icon .. ' ' .. filetype
 
         -- Construct output string if truncated or buffer is not normal
