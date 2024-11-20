@@ -22,3 +22,11 @@ vim.diagnostic.config {
     border = 'rounded',
   },
 }
+
+-- Change diagnostic symbols in the sign column (gutter)
+local signs = { ERROR = '', WARN = '', HINT = '', INFO = '' }
+local diagnostic_signs = {}
+for type, icon in pairs(signs) do
+  diagnostic_signs[vim.diagnostic.severity[type]] = icon
+end
+vim.diagnostic.config { signs = { text = diagnostic_signs } }
