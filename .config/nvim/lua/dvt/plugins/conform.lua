@@ -16,9 +16,9 @@ return { -- Autoformat
         vim.g.enable_autoformat = not vim.g.enable_autoformat
 
         if vim.g.enable_autoformat then
-          require('fidget').notify('Autoformatting enabled', nil, { key = 'toggle_autoformatting' })
+          require('fidget').notify('Autoformatting enabled', nil, { key = 'toggle_autoformatting', annote = 'toggle' })
         else
-          require('fidget').notify('Autoformatting disabled', nil, { key = 'toggle_autoformatting' })
+          require('fidget').notify('Autoformatting disabled', nil, { key = 'toggle_autoformatting', annote = 'toggle' })
         end
       end,
       desc = 'Toggle auto formatting',

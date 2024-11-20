@@ -46,10 +46,10 @@ return {
       vim.g.lint_enabled = not vim.g.lint_enabled
       if vim.g.lint_enabled then
         vim.diagnostic.show(nil, 0)
-        require('fidget').notify('Lint enabled', nil, { key = 'toggle_lint' })
+        require('fidget').notify('Lint enabled', nil, { key = 'toggle_lint', annote = 'toggle' })
       else
         vim.diagnostic.hide(nil, 0)
-        require('fidget').notify('Lint disabled', nil, { key = 'toggle_lint' })
+        require('fidget').notify('Lint disabled', nil, { key = 'toggle_lint', annote = 'toogle' })
       end
     end
 

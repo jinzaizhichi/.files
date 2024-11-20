@@ -121,9 +121,9 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
 
               if vim.lsp.inlay_hint.is_enabled { bufnr = event.buf } then
-                require('fidget').notify('Inlay hints enabled', nil, { key = 'toggle_inlay_hints' })
+                require('fidget').notify('Inlay hints enabled', nil, { key = 'toggle_inlay_hints', annote = 'toggle' })
               else
-                require('fidget').notify('Inlay hints disabled', nil, { key = 'toggle_inlay_hints' })
+                require('fidget').notify('Inlay hints disabled', nil, { key = 'toggle_inlay_hints', annote = 'toggle' })
               end
             end, '[T]oggle [I]nlay Hints')
           end
