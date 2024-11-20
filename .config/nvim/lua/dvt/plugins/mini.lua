@@ -59,10 +59,10 @@ return { -- Collection of various small independent plugins/modules
         if not has_devicons then
           return
         end
-        local get_icon = function()
-          return (devicons.get_icon(vim.fn.expand '%:t', nil, { default = true }))
-        end
-        filetype = get_icon() .. ' ' .. filetype
+        -- TODO: Use filetype instead of filename to fix color when file doesn't have extensions
+        -- (when using shebang)
+        local icon, highlight = devicons.get_icon(vim.fn.expand '%:t', nil, { default = true })
+        filetype = icon .. ' ' .. filetype
 
         -- Construct output string if truncated or buffer is not normal
         if MiniStatusline.is_truncated(args.trunc_width) or vim.bo.buftype ~= '' then
@@ -83,7 +83,7 @@ return { -- Collection of various small independent plugins/modules
         -- Construct output string with extra file info
         local size = get_filesize()
 
-        return string.format('%s %s', filetype, size)
+        return string.format('%s %s', filetype, size), highlight
       end
 
       local mode, mode_hl = MiniStatusline.section_mode { trunc_width = 120 }
@@ -93,7 +93,7 @@ return { -- Collection of various small independent plugins/modules
       local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
       local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
-      local fileinfo = section_fileinfo { trunc_width = 120 }
+      local fileinfo, fileinfo_hl = section_fileinfo { trunc_width = 120 }
       local location = '%2l:%-2v'
       local search = MiniStatusline.section_searchcount { trunc_width = 75 }
 
@@ -149,6 +149,14 @@ return { -- Collection of various small independent plugins/modules
       local dev_hl_colors = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineDevinfo', link = false })
       local dev_hl_invert = invertHighlightGroup('MiniStatuslineDevinfo', dev_hl_colors)
 
+      -- Setup fileinfo section colors
+      if fileinfo_hl ~= nil then
+        local fileinfo_hl_colors = vim.api.nvim_get_hl(0, { name = fileinfo_hl, link = false })
+        vim.api.nvim_set_hl(0, fileinfo_hl, { fg = fileinfo_hl_colors.fg, bg = dev_hl_colors.bg })
+      else
+        fileinfo_hl = 'MiniStatuslineFileinfo'
+      end
+
       return combine_groups {
         { hl = mode_hl_invert, strings = { '' } },
         { hl = mode_hl, strings = { mode } },
@@ -162,7 +170,7 @@ return { -- Collection of various small independent plugins/modules
         { hl = 'MiniStatuslineFilename', strings = { filename } },
         '%=', -- End left alignment
         { hl = dev_hl_invert, strings = { '' } },
-        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
+        { hl = fileinfo_hl, strings = { fileinfo } },
         { hl = dev_hl_invert, strings = { '' } },
         ' ',
         { hl = mode_hl_invert, strings = { '' } },
