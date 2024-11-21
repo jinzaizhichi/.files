@@ -13,14 +13,8 @@ return { -- Collection of various small independent plugins/modules
     local spec_treesitter = require('mini.ai').gen_spec.treesitter
     require('mini.ai').setup {
       custom_textobjects = {
-        f = spec_treesitter { a = '@function.outer', i = '@function.inner' },
+        F = spec_treesitter { a = '@function.outer', i = '@function.inner' },
       },
-      mappings = {
-        goto_left = 'g[',
-        goto_right = 'g]',
-      },
-      n_lines = 500,
-      search_method = 'cover_or_nearest',
     }
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
@@ -41,7 +35,6 @@ return { -- Collection of various small independent plugins/modules
       },
       -- 1 second long duration
       highlight_duration = 1000,
-      search_method = 'cover_or_nearest',
     }
 
     local function statuslineActive()
@@ -64,7 +57,7 @@ return { -- Collection of various small independent plugins/modules
 
         -- Construct output string if truncated or buffer is not normal
         if MiniStatusline.is_truncated(args.trunc_width) or vim.bo.buftype ~= '' then
-          return filetype
+          return filetype, highlight
         end
 
         local get_filesize = function()
@@ -213,5 +206,7 @@ return { -- Collection of various small independent plugins/modules
         highlight = -1,
       },
     }
+
+    require('mini.pairs').setup {}
   end,
 }
