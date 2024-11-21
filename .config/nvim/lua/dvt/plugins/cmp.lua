@@ -34,6 +34,7 @@ return { -- Autocompletion
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-buffer',
   },
   config = function()
     -- See `:help cmp`
@@ -145,6 +146,21 @@ return { -- Autocompletion
         { name = 'luasnip' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'path' },
+        {
+          name = 'buffer',
+          option = {
+            -- NOTE: Don't run on files that are larger than 1 MB
+            -- As per the official repo: https://github.com/hrsh7th/cmp-buffer?tab=readme-ov-file#performance-on-large-text-files
+            get_bufnrs = function()
+              local buf = vim.api.nvim_get_current_buf()
+              local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+              if byte_size > 1024 * 1024 then
+                return {}
+              end
+              return { buf }
+            end,
+          },
+        },
       },
     }
   end,
