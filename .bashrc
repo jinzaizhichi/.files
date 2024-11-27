@@ -121,16 +121,6 @@ alias rumad="ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=ssh-rsa
 # PATH
 export PATH=$(go env GOPATH)/bin:$HOME/.local/bin:$PATH
 
-## powerline-shell
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
-##
-
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # Immediately append the commands to the .bash_history file
