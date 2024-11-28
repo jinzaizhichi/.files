@@ -7,7 +7,6 @@ return {
     vim.diagnostic.config {
       virtual_text = false,
       virtual_lines = true,
-      update_in_insert = true,
     }
   end,
   keys = {
@@ -19,7 +18,6 @@ return {
         vim.diagnostic.config {
           virtual_text = not vim.g.lsp_lines_enabled,
           virtual_lines = vim.g.lsp_lines_enabled,
-          update_in_insert = vim.g.lsp_lines_enabled,
         }
       end,
       desc = 'Toggle [d]iagnostic',
