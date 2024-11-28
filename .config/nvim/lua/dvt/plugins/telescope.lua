@@ -112,6 +112,8 @@ return { -- Fuzzy Finder (files, lsp, etc)
           height = 0.3,
         },
       },
+      prompt_prefix = '󱞫 ',
+      selection_caret = '󰁔 ',
       -- Disable all default mappings
       default_mappings = {},
       mappings = {
@@ -154,7 +156,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     },
     extensions = {
       ['ui-select'] = {
-        require('telescope.themes').get_dropdown(),
+        require('telescope.themes').get_cursor(),
       },
     },
   },
