@@ -3,7 +3,18 @@ return { -- Collection of various small independent plugins/modules
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
+  init = function()
+    package.preload['nvim-web-devicons'] = function()
+      require('mini.icons').mock_nvim_web_devicons()
+      return package.loaded['nvim-web-devicons']
+    end
+  end,
   config = function()
+    -- NOTE: Start mini.icons configuration
+    require('mini.icons').setup()
+
+    -- NOTE: Start mini.ai configuration
+    --
     -- Better Around/Inside textobjects
     --
     -- Examples:
@@ -17,6 +28,8 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    -- NOTE: Start mini.surround configuration
+    --
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
     -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -37,6 +50,7 @@ return { -- Collection of various small independent plugins/modules
       highlight_duration = 1000,
     }
 
+    -- NOTE: Start mini.statusline configuration
     local function statuslineActive()
       local section_fileinfo = function(args)
         local filetype = vim.bo.filetype
@@ -47,12 +61,7 @@ return { -- Collection of various small independent plugins/modules
         end
 
         -- Add filetype icon
-        -- Try falling back to 'nvim-web-devicons'
-        local has_devicons, devicons = pcall(require, 'nvim-web-devicons')
-        if not has_devicons then
-          return
-        end
-        local icon, highlight = devicons.get_icon_by_filetype(filetype, { default = true })
+        local icon, highlight, _ = MiniIcons.get('filetype', filetype)
         filetype = icon .. ' ' .. filetype
 
         -- Construct output string if truncated or buffer is not normal
@@ -143,9 +152,8 @@ return { -- Collection of various small independent plugins/modules
       -- Setup fileinfo section colors
       if fileinfo_hl ~= nil then
         local fileinfo_hl_colors = vim.api.nvim_get_hl(0, { name = fileinfo_hl, link = false })
-        vim.api.nvim_set_hl(0, fileinfo_hl, { fg = fileinfo_hl_colors.fg, bg = dev_hl_colors.bg })
-      else
-        fileinfo_hl = 'MiniStatuslineFileinfo'
+        local mini_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineFileinfo', link = false })
+        vim.api.nvim_set_hl(0, 'MiniStatuslineFileinfo', { fg = fileinfo_hl_colors.fg, bg = mini_hl.bg })
       end
 
       return combine_groups {
@@ -161,7 +169,7 @@ return { -- Collection of various small independent plugins/modules
         { hl = 'MiniStatuslineFilename', strings = { filename } },
         '%=', -- End left alignment
         { hl = dev_hl_invert, strings = { '' } },
-        { hl = fileinfo_hl, strings = { fileinfo } },
+        { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
         { hl = dev_hl_invert, strings = { '' } },
         ' ',
         { hl = mode_hl_invert, strings = { '' } },
@@ -177,7 +185,8 @@ return { -- Collection of various small independent plugins/modules
     -- set use_icons to true if you have a Nerd Font
     statusline.setup { content = { active = statuslineActive }, use_icons = true }
 
-    -- DVT additions
+    -- NOTE: Start mini.comment configuration
+    --
     -- Comment out lines using Ctrl-/ since I'm used to it from Jetbrains
     require('mini.comment').setup {
       mappings = {
@@ -188,6 +197,7 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    -- NOTE: Start mini.starter configuration
     local starter = require 'mini.starter'
     starter.setup {
       items = {
@@ -201,12 +211,14 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    -- NOTE: Start mini.jump configuration
     require('mini.jump').setup {
       delay = {
         highlight = -1,
       },
     }
 
+    -- NOTE: Start mini.pairs configuration
     require('mini.pairs').setup {}
 
     -- NOTE: Start mini.files configuration

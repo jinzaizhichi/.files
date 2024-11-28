@@ -20,7 +20,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-telescope/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons', enabled = true },
+    { 'echasnovski/mini.nvim' },
   },
   init = function()
     vim.g.is_inside_work_tree = {}
