@@ -54,21 +54,35 @@ return { -- Fuzzy Finder (files, lsp, etc)
       '<leader>/',
       function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
-        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
-          previewer = false,
-        })
+        require('telescope.builtin').current_buffer_fuzzy_find(
+          require('telescope.themes').get_dropdown {
+            winblend = 10,
+            previewer = false,
+          }
+        )
       end,
       desc = '[/] Fuzzily search in current buffer',
     },
 
-    { '<leader>sb', require('telescope.builtin').buffers, desc = '[S]earch Existing [B]uffers' },
+    {
+      '<leader>sb',
+      require('telescope.builtin').buffers,
+      desc = '[S]earch Existing [B]uffers',
+    },
     { '<leader>so', require('telescope.builtin').oldfiles, desc = '[S]earch [O]ld Files' },
     { '<leader>sr', require('telescope.builtin').resume, desc = '[S]earch [R]esume' },
     { '<leader>sd', require('telescope.builtin').diagnostics, desc = '[S]earch [D]iagnostics' },
     { '<leader>sg', require('telescope.builtin').live_grep, desc = '[S]earch by [G]rep' },
-    { '<leader>sw', require('telescope.builtin').grep_string, desc = '[S]earch current [W]ord' },
-    { '<leader>ss', require('telescope.builtin').builtin, desc = '[S]earch [S]elect Telescope' },
+    {
+      '<leader>sw',
+      require('telescope.builtin').grep_string,
+      desc = '[S]earch current [W]ord',
+    },
+    {
+      '<leader>ss',
+      require('telescope.builtin').builtin,
+      desc = '[S]earch [S]elect Telescope',
+    },
     {
       -- Search git files if within git project, otherwise do entire system
       -- Gotten from: https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
@@ -76,14 +90,24 @@ return { -- Fuzzy Finder (files, lsp, etc)
       function()
         local cwd = vim.fn.getcwd()
         if vim.g.is_inside_work_tree[cwd] == nil then
-          local result = vim.system({ 'git', 'rev-parse', '--is-inside-work-tree' }, { text = true }):wait()
+          local result = vim
+            .system({ 'git', 'rev-parse', '--is-inside-work-tree' }, { text = true })
+            :wait()
           vim.g.is_inside_work_tree[cwd] = result.code == 0
         end
 
         if vim.g.is_inside_work_tree[cwd] then
-          require('telescope.builtin').git_files { no_ignore = true, no_ignore_parent = true, hidden = true }
+          require('telescope.builtin').git_files {
+            no_ignore = true,
+            no_ignore_parent = true,
+            hidden = true,
+          }
         else
-          require('telescope.builtin').find_files { no_ignore = true, no_ignore_parent = true, hidden = true }
+          require('telescope.builtin').find_files {
+            no_ignore = true,
+            no_ignore_parent = true,
+            hidden = true,
+          }
         end
       end,
       desc = '[S]earch [F]iles',

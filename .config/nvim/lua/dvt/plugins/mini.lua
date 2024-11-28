@@ -153,7 +153,11 @@ return { -- Collection of various small independent plugins/modules
       if fileinfo_hl ~= nil then
         local fileinfo_hl_colors = vim.api.nvim_get_hl(0, { name = fileinfo_hl, link = false })
         local mini_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineFileinfo', link = false })
-        vim.api.nvim_set_hl(0, 'MiniStatuslineFileinfo', { fg = fileinfo_hl_colors.fg, bg = mini_hl.bg })
+        vim.api.nvim_set_hl(
+          0,
+          'MiniStatuslineFileinfo',
+          { fg = fileinfo_hl_colors.fg, bg = mini_hl.bg }
+        )
       end
 
       return combine_groups {
@@ -302,7 +306,12 @@ return { -- Collection of various small independent plugins/modules
         map_split(buf_id, '<C-h>', 'belowright horizontal')
         map_split(buf_id, '<C-v>', 'belowright vertical')
 
-        vim.keymap.set('n', '.', toggle_dotfiles, { buffer = buf_id, desc = 'Toggle hidden [.]files' })
+        vim.keymap.set(
+          'n',
+          '.',
+          toggle_dotfiles,
+          { buffer = buf_id, desc = 'Toggle hidden [.]files' }
+        )
       end,
     })
   end,

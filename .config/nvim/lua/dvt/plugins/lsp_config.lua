@@ -89,8 +89,12 @@ return {
           --
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          if
+            client
+            and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight)
+          then
+            local highlight_augroup =
+              vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -107,7 +111,10 @@ return {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds {
+                  group = 'kickstart-lsp-highlight',
+                  buffer = event2.buf,
+                }
               end,
             })
           end
@@ -121,9 +128,17 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
 
               if vim.lsp.inlay_hint.is_enabled { bufnr = event.buf } then
-                require('fidget').notify('Inlay hints enabled', nil, { key = 'toggle_inlay_hints', annote = 'toggle' })
+                require('fidget').notify(
+                  'Inlay hints enabled',
+                  nil,
+                  { key = 'toggle_inlay_hints', annote = 'toggle' }
+                )
               else
-                require('fidget').notify('Inlay hints disabled', nil, { key = 'toggle_inlay_hints', annote = 'toggle' })
+                require('fidget').notify(
+                  'Inlay hints disabled',
+                  nil,
+                  { key = 'toggle_inlay_hints', annote = 'toggle' }
+                )
               end
             end, '[T]oggle [I]nlay Hints')
           end
@@ -135,7 +150,8 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      capabilities =
+        vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -228,7 +244,8 @@ return {
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+            server.capabilities =
+              vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
         },

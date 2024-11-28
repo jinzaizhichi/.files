@@ -40,7 +40,12 @@ return {
         map('v', '<leader>gs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
         end, { desc = '[S]tage hunk' })
-        map('n', '<leader>gu', gitsigns.undo_stage_hunk, { desc = '[U]nstage previous staged hunk' })
+        map(
+          'n',
+          '<leader>gu',
+          gitsigns.undo_stage_hunk,
+          { desc = '[U]nstage previous staged hunk' }
+        )
         map('n', '<leader>gr', gitsigns.reset_hunk, { desc = '[R]eset hunk' })
         map('v', '<leader>gr', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
@@ -85,10 +90,18 @@ return {
     },
     init = function()
       local colors = require('dracula').colors()
-      vim.api.nvim_set_hl(0, 'GitConflictIncomingLabel', { fg = colors.bg, bg = colors.bright_green, bold = true, italic = true })
+      vim.api.nvim_set_hl(
+        0,
+        'GitConflictIncomingLabel',
+        { fg = colors.bg, bg = colors.bright_green, bold = true, italic = true }
+      )
       vim.api.nvim_set_hl(0, 'GitConflictIncoming', { fg = colors.green })
       vim.api.nvim_set_hl(0, 'GitConflictCurrent', { fg = colors.red })
-      vim.api.nvim_set_hl(0, 'GitConflictCurrentLabel', { fg = colors.bg, bg = colors.bright_red, bold = true, italic = true })
+      vim.api.nvim_set_hl(
+        0,
+        'GitConflictCurrentLabel',
+        { fg = colors.bg, bg = colors.bright_red, bold = true, italic = true }
+      )
     end,
     opts = true,
   },

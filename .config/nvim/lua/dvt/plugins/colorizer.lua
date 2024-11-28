@@ -20,9 +20,17 @@ return {
         vim.g.highlighting_enabled = not vim.g.highlighting_enabled
 
         if vim.g.highlighting_enabled then
-          require('fidget').notify('Highlighting enabled', nil, { key = 'toggle_highlight', annote = 'toggle' })
+          require('fidget').notify(
+            'Highlighting enabled',
+            nil,
+            { key = 'toggle_highlight', annote = 'toggle' }
+          )
         else
-          require('fidget').notify('Highlighting disabled', nil, { key = 'toggle_highlight', annote = 'toggle' })
+          require('fidget').notify(
+            'Highlighting disabled',
+            nil,
+            { key = 'toggle_highlight', annote = 'toggle' }
+          )
         end
       end,
       desc = 'Toggle [H]ighlighting',
