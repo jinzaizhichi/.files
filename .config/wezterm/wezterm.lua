@@ -6,19 +6,6 @@ config.default_prog = { "fish", "-l" }
 
 config.window_close_confirmation = "NeverPrompt"
 
-config.enable_scroll_bar = true
-wezterm.on("update-status", function(window, pane)
-	local process_name = pane:get_foreground_process_name()
-	local c = window:get_config_overrides() or {}
-	if string.find(process_name, "fish") then
-		c.enable_scroll_bar = true
-	else
-		c.enable_scroll_bar = false
-	end
-	window:set_config_overrides(c)
-	return true
-end)
-
 config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
 config.font_size = 12.5
 
