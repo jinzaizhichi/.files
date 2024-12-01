@@ -6,47 +6,75 @@
 " Source your .vimrc
 source ~/.vimrc
 
-"" -- Suggested options --
-" Show a few lines of context around the cursor. Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
-set scrolloff=10
+" Which Key Stuff
+" NOTE: You need to install https://plugins.jetbrains.com/plugin/15976-which-keyset which-key
+set which-key
+set notimeout
 
-" Do incremental searching.
-set incsearch
-
-" Don't use Ex mode, use Q for formatting.
-map Q gq
+" Apparently a Neovim default plugin
+set matchit
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 " NOTE: Use IdeaVim Tracking ID from search everywhere menu to see the action ID for mapping
 
 let mapleader = " "
 
-" Highlight copied text
 Plug 'machakann/vim-highlightedyank'
+" Highlight copied text
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 
-" LSP: [R]ename
-map <leader>rl <Action>(RenameElement)
+" Move line
+nmap j <Action>(MoveStatementUp)
+nmap k <Action>(MoveStatementDown)
+xmap j <Action>(MoveStatementUp)
+xmap k <Action>(MoveStatementDown)
 
-" LSP: [h]over
-map h <Action>(QuickJavaDoc)
+" Search stuff
+nmap <leader>sf <Action>(GotoFile)
+nmap <leader>sg <Action>(FindInPath)
+nmap <leader>so <Action>(RecentFiles)
+nmap <leader>sw <Action>(FindWordAtCaret)
 
-" [S]earch [f]ile
-map <leader>sf <Action>(GotoFile)
+" Find in buffer
+nmap <leader>/ <Action>(Find)
+nmap <leader>rs <Action>(Replace)
 
-" [S]earch [g]rep
-map <leader>sg <Action>(TextSearchAction)
+" Diagnostics
+nmap <C-w>d <Action>(ActivateProblemsViewToolWindow)
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+
+" Git stuff
+nmap <leader>gb <Action>(Annotate)
+
+" Tab navigation
+nmap <leader><TAB>[ <Action>(PreviousTab)
+nmap <leader><TAB>] <Action>(NextTab)
+nmap <leader><TAB>w <Action>(CloseContent)
 
 " Harpoon stuff
-nmap <A-n> :action GotoHarpoon1<cr>
-nmap <A-e> :action GotoHarpoon2<cr>
-nmap <A-i> :action GotoHarpoon3<cr>
-nmap <A-o> :action GotoHarpoon4<cr>
+" NOTE: You need to install https://github.com/AlexGirardDev/HarpoonIJ
+nmap <A-n> <Action>(GotoHarpoon1)
+nmap <A-e> <Action>(GotoHarpoon2)
+nmap <A-i> <Action>(GotoHarpoon3)
+nmap <A-o> <Action>(GotoHarpoon4)
 
-nmap <leader>hu :action ShowHarpoon<cr>
-nmap <leader>ha :action AddToHarpoon<cr>
+nmap <leader>hu <Action>(ShowHarpoon)
+nmap <leader>ha <Action>(AddToHarpoon)
+nmap <C-/> <Action>(CommentByLineComment)
 
-" Code action
-map <leader>a <Action>(ShowIntentionActions)
+" LSP stuff
+nmap <leader>rl <Action>(RenameElement)
+nmap <leader>rf <Action>(RenameFile)
+nmap h <Action>(QuickJavaDoc)
+nmap <leader>a <Action>(ShowIntentionActions)
+nmap <leader>A <Action>(RefactoringMenu)
+nmap gd <Action>(GotoDeclaration)
+nmap gr <Action>(FindUsages)
+nmap gI <Action>(GotoImplementation)
+
+" Search stuff
+nmap <leader>e <Action>(ActivateProjectToolWindow)
+
+nnoremap Y y$

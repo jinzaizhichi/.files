@@ -4,14 +4,14 @@ set number
 " Use line numbers relative to the cursor's line
 set relativenumber
 
+" Always see 10 lines at bottom or top
+set scrolloff=10
+
 " Use space characters instead of tabs and set tabs to 4 (https://vim.fandom.com/wiki/Indenting_source_code#Indentation_without_hard_tabs)
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-
-" Show └─▶ when wrapping lines
-set showbreak=└─▶
 
 " Color column #100, good for knowing when you nested too deeply
 set colorcolumn=100
@@ -56,12 +56,12 @@ set wildmenu
 " List all commands when autocompleting commands
 set wildmode=list:longest,full
 
+" Turn off highlighting
+nmap <ESC> :nohlsearch<CR>
+
 " Center view when navigating
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
-
-nnoremap <Down> <Down>zz
-nnoremap <Up> <Up>zz
 
 nnoremap n nzz
 nnoremap N Nzz
