@@ -9,7 +9,7 @@ source ~/.vimrc
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
 " text scroll if you mouse-click near the start or end of the window.
-set scrolloff=5
+set scrolloff=10
 
 " Do incremental searching.
 set incsearch
@@ -18,19 +18,35 @@ set incsearch
 map Q gq
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+" NOTE: Use IdeaVim Tracking ID from search everywhere menu to see the action ID for mapping
+
+let mapleader = " "
 
 " Highlight copied text
 Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 
+" LSP: [R]ename
+map <leader>rl <Action>(RenameElement)
 
-"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
-"" Map \r to the Reformat Code action
-"map \r <Action>(ReformatCode)
+" LSP: [h]over
+map h <Action>(QuickJavaDoc)
 
-"" Map <leader>d to start debug
-"map <leader>d <Action>(Debug)
+" [S]earch [f]ile
+map <leader>sf <Action>(GotoFile)
 
-"" Map \b to toggle the breakpoint on the current line
-"map \b <Action>(ToggleLineBreakpoint)
+" [S]earch [g]rep
+map <leader>sg <Action>(TextSearchAction)
+
+" Harpoon stuff
+nmap <A-n> :action GotoHarpoon1<cr>
+nmap <A-e> :action GotoHarpoon2<cr>
+nmap <A-i> :action GotoHarpoon3<cr>
+nmap <A-o> :action GotoHarpoon4<cr>
+
+nmap <leader>hu :action ShowHarpoon<cr>
+nmap <leader>ha :action AddToHarpoon<cr>
+
+" Code action
+map <leader>a <Action>(ShowIntentionActions)
