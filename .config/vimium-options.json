@@ -1,0 +1,5 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap j\nunmap k\nunmap J\nunmap K\nunmap H\nunmap L\nunmap ^\n\nmap j previousTab\nmap k nextTab\nmap <A-left> goBack\nmap <A-right> goForward\nmap <C-o> visitPreviousTab",
+  "linkHintCharacters": "arstneio",
+  "settingsVersion": "2.1.2"
+}
