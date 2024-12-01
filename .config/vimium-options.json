@@ -1,5 +1,6 @@
 {
   "keyMappings": "# Insert your preferred key mappings here.\nunmap j\nunmap k\nunmap J\nunmap K\nunmap H\nunmap L\nunmap ^\n\nmap j previousTab\nmap k nextTab\nmap <A-left> goBack\nmap <A-right> goForward\nmap <C-o> visitPreviousTab",
-  "linkHintCharacters": "arstneio",
+  "linkHintCharacters": "arfstdnhueio",
+  "searchUrl": "https://search.brave.com/search?q=",
   "settingsVersion": "2.1.2"
 }
