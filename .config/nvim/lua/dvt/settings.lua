@@ -56,8 +56,9 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
--- Minimal number of screen lines to keep above and below the cursor.
+-- Minimal number of screen lines/columns to keep around the cursor.
 vim.opt.scrolloff = 10
+vim.opt.sidescrolloff = 10
 
 ---- DVT's settings ----
 vim.opt.swapfile = false

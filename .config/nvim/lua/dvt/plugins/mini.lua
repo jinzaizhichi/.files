@@ -277,7 +277,7 @@ return { -- Collection of various small independent plugins/modules
     local starter = require 'mini.starter'
     starter.setup {
       header = vim.fn.join(days[os.date '%w'], '\n'),
-      footer = 'DVT on Neovim :)',
+      footer = 'DVT on Neovim 󰱫',
       items = {
         starter.sections.recent_files(10, false, false),
         starter.sections.telescope(),
@@ -386,6 +386,14 @@ return { -- Collection of various small independent plugins/modules
           toggle_dotfiles,
           { buffer = buf_id, desc = 'Toggle hidden [.]files' }
         )
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesWindowUpdate',
+      callback = function(args)
+        vim.wo[args.data.win_id].number = true
+        vim.wo[args.data.win_id].relativenumber = true
       end,
     })
   end,
