@@ -38,17 +38,22 @@ return { -- Collection of various small independent plugins/modules
     require('mini.surround').setup {
       -- Use Ctrl-s for all things surround
       mappings = {
-        add = '<C-s>a',
-        delete = '<C-s>d',
-        find = '<C-s>f',
-        find_left = '<C-s>F',
-        highlight = '<C-s>h',
-        replace = '<C-s>r',
-        update_n_lines = '<C-s>n',
+        add = 'ys',
+        delete = 'ds',
+        find = '',
+        find_left = '',
+        highlight = '',
+        replace = 'cs',
+        update_n_lines = '',
       },
-      -- 1 second long duration
-      highlight_duration = 1000,
     }
+
+    -- Remap adding surrounding to Visual mode selection
+    vim.keymap.del('x', 'ys')
+    vim.keymap.set('x', 'S', [[:<C-u>lua MiniSurround.add('visual')<CR>]], { silent = true })
+
+    -- Make special mapping for "add surrounding for line"
+    vim.keymap.set('n', 'yss', 'ys_', { remap = true })
 
     -- NOTE: Start mini.statusline configuration
     local function statuslineActive()
