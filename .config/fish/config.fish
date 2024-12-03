@@ -38,6 +38,7 @@ set fish_cursor_insert line
 
 # Environment variables
 set -x EDITOR nvim
+set -x FZF_DEFAULT_OPTS "--layout=reverse"
 
 # Prefered optons for common programs
 alias df 'df --total -h -T'
