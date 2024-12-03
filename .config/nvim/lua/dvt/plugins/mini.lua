@@ -308,8 +308,10 @@ return { -- Collection of various small independent plugins/modules
     local mini_files = require 'mini.files'
     mini_files.setup {
       mappings = {
+        go_in = '',
         go_in_plus = '<right>',
         go_out = '<left>',
+        go_out_plus = '',
         synchronize = '<CR>',
       },
       options = {
@@ -317,8 +319,6 @@ return { -- Collection of various small independent plugins/modules
       },
       windows = {
         max_number = 3,
-        preview = true,
-        width_preview = 35,
       },
     }
 
