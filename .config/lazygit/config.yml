@@ -311,7 +311,7 @@ git:
 
   # If true, parse emoji strings in commit messages e.g. render :rocket: as 🚀
   # (This should really be under 'gui', not 'git')
-  parseEmoji: false
+  parseEmoji: true
 
   # Config for showing the log in the commits view
   log:
@@ -413,7 +413,7 @@ os:
   readFromClipboardCmd: ""
 
 # If true, don't display introductory popups upon opening Lazygit.
-disableStartupPopups: false
+disableStartupPopups: true
 
 # What to do when opening Lazygit outside of a git repo.
 # - 'prompt': (default) ask whether to initialize a new repo or open in the most recent repo
