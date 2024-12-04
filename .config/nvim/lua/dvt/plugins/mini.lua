@@ -151,11 +151,14 @@ return { -- Collection of various small independent plugins/modules
       local mode_hl_colors = vim.api.nvim_get_hl(0, { name = mode_hl, link = false })
       local mode_hl_invert = invertHighlightGroup(mode_hl, mode_hl_colors)
 
+      -- Apparently, my default Statusline highlight group colors -> guifg=#abb2bf guibg=#191a21
+      vim.api.nvim_set_hl(0, 'MiniStatuslineDevinfo', { fg = '#ABB2BF', bg = '#191A21' })
       local dev_hl_colors = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineDevinfo', link = false })
       local dev_hl_invert = invertHighlightGroup('MiniStatuslineDevinfo', dev_hl_colors)
 
       -- Setup fileinfo section colors
       if fileinfo_hl ~= nil then
+        vim.api.nvim_set_hl(0, 'MiniStatuslineFileinfo', { fg = '#ABB2BF', bg = '#191A21' })
         local fileinfo_hl_colors = vim.api.nvim_get_hl(0, { name = fileinfo_hl, link = false })
         local mini_hl = vim.api.nvim_get_hl(0, { name = 'MiniStatuslineFileinfo', link = false })
         vim.api.nvim_set_hl(
@@ -193,6 +196,9 @@ return { -- Collection of various small independent plugins/modules
     local statusline = require 'mini.statusline'
     -- set use_icons to true if you have a Nerd Font
     statusline.setup { content = { active = statuslineActive }, use_icons = true }
+
+    -- Change the color of the division block by using its highlight group
+    vim.api.nvim_set_hl(0, 'Statusline', { bg = 'bg' })
 
     -- NOTE: Start mini.comment configuration
     --
