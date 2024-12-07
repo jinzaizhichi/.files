@@ -144,7 +144,7 @@ return { -- Collection of various small independent plugins/modules
       local lsp = MiniStatusline.section_lsp { trunc_width = 75 }
       local filename = MiniStatusline.section_filename { trunc_width = 140 }
 
-      local fileinfo, fileinfo_hl = section_fileinfo { trunc_width = 120 }
+      local fileinfo, fileinfo_hl = section_fileinfo { trunc_width = 75 }
       local location = '%2l:%-2v'
       local search = MiniStatusline.section_searchcount { trunc_width = 75 }
 
