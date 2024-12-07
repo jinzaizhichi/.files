@@ -1,5 +1,6 @@
 return {
   'NvChad/nvim-colorizer.lua',
+  enabled = false,
   event = 'BufEnter',
   init = function()
     vim.g.highlighting_enabled = true

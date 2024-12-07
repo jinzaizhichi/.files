@@ -4,14 +4,60 @@ return { -- Collection of various small independent plugins/modules
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
   init = function()
+    vim.g.highlighting_enabled = true
+
     package.preload['nvim-web-devicons'] = function()
       require('mini.icons').mock_nvim_web_devicons()
       return package.loaded['nvim-web-devicons']
     end
   end,
+  keys = {
+    {
+      '<leader>th',
+      function()
+        require('mini.hipatterns').toggle(0)
+        vim.g.highlighting_enabled = not vim.g.highlighting_enabled
+
+        if vim.g.highlighting_enabled then
+          require('fidget').notify(
+            'Highlighting enabled',
+            nil,
+            { key = 'toggle_highlight', annote = 'toggle' }
+          )
+        else
+          require('fidget').notify(
+            'Highlighting disabled',
+            nil,
+            { key = 'toggle_highlight', annote = 'toggle' }
+          )
+        end
+      end,
+      desc = 'Toggle [H]ighlighting',
+    },
+  },
   config = function()
     -- NOTE: Start mini.icons configuration
     require('mini.icons').setup()
+
+    -- NOTE: Start mini.hipatterns configuration
+    local patterns = require 'mini.hipatterns'
+    patterns.setup {
+      highlighters = {
+        hex_color = patterns.gen_highlighter.hex_color { priority = 2000 },
+        shorthand = {
+          pattern = '()#%x%x%x()%f[^%x%w]',
+          group = function(_, _, data)
+            ---@type string
+            local match = data.full_match
+            local r, g, b = match:sub(2, 2), match:sub(3, 3), match:sub(4, 4)
+            local hex_color = '#' .. r .. r .. g .. g .. b .. b
+
+            return patterns.compute_hex_color_group(hex_color, 'bg')
+          end,
+          extmark_opts = { priority = 2000 },
+        },
+      },
+    }
 
     -- NOTE: Start mini.ai configuration
     --
