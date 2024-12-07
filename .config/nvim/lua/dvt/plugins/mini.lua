@@ -67,10 +67,34 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    local spec_treesitter = require('mini.ai').gen_spec.treesitter
+    local ai = require 'mini.ai'
     require('mini.ai').setup {
+      n_lines = 500,
       custom_textobjects = {
-        F = spec_treesitter { a = '@function.outer', i = '@function.inner' },
+        -- [F]unction
+        f = ai.gen_spec.treesitter { a = '@function.outer', i = '@function.inner' },
+
+        -- Entire [B]uffer
+        b = function()
+          local from = { line = 1, col = 1 }
+          local to = {
+            line = vim.fn.line '$',
+            col = math.max(vim.fn.getline('$'):len(), 1),
+          }
+          return { from = from, to = to }
+        end,
+
+        -- [C]ode
+        c = ai.gen_spec.treesitter {
+          a = { '@block.outer', '@conditional.outer', '@loop.outer' },
+          i = { '@block.inner', '@conditional.inner', '@loop.inner' },
+        },
+
+        -- [I]nvokation
+        i = ai.gen_spec.function_call(),
+
+        -- [D]igits
+        d = { '%f[%d]%d+' },
       },
     }
 
