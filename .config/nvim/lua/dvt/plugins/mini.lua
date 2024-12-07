@@ -385,7 +385,13 @@ return { -- Collection of various small independent plugins/modules
     }
 
     -- NOTE: Start mini.pairs configuration
-    require('mini.pairs').setup {}
+    require('mini.pairs').setup {
+      modes = {
+        insert = true,
+        command = true,
+        terminal = false,
+      },
+    }
 
     -- NOTE: Start mini.files configuration
     local mini_files = require 'mini.files'
