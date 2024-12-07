@@ -50,6 +50,7 @@ return { -- Autocompletion
         end,
       },
       completion = { completeopt = 'menu,menuone,noinsert' },
+      preselect = 'None',
 
       window = {
         completion = cmp.config.window.bordered(),
