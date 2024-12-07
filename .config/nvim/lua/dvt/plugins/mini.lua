@@ -450,6 +450,19 @@ return { -- Collection of various small independent plugins/modules
           toggle_dotfiles,
           { buffer = buf_id, desc = 'Toggle hidden [.]files' }
         )
+
+        vim.keymap.set(
+          'n',
+          '<ESC>',
+          mini_files.close,
+          { buffer = buf_id, desc = 'Close Mini Files' }
+        )
+        vim.keymap.set(
+          'i',
+          '<C-c>',
+          mini_files.close,
+          { buffer = buf_id, desc = 'Close Mini Files' }
+        )
       end,
     })
 
