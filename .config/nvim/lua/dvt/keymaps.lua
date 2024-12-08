@@ -49,9 +49,6 @@ vim.keymap.set('n', 'Q', '<nop>')
 -- Rename the word my cursor is on using vim's substitute thing
 vim.keymap.set('n', '<leader>rs', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- Highlight everything
-vim.keymap.set('n', '<C-a>', 'gg<S-v>G')
-
 -- Show hover with window
 vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResized' }, {
   desc = 'Setup LSP hover window',
