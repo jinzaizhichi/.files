@@ -1,0 +1,29 @@
+#!/bin/env bash
+
+project_paths=(
+    "$HOME/Documents/Projects/"
+    "$HOME/Documents/University Projects/"
+    "$HOME/repo_clones/"
+)
+create_project="Create a new project"
+
+selection=$( (find "${project_paths[@]}" -maxdepth 1 -mindepth 1 -type d; echo "$create_project") | fzf)
+
+# Do nothing when nothing was selected
+if [[ "$selection" == "" ]]; then
+    echo "Nothing selected"
+    exit
+fi
+
+# Create a new project
+if [[ "$selection" == "$create_project" ]]; then
+    echo "What is the name of the project?"
+    read -r project_name
+    selection="$HOME/Documents/Projects/$project_name"
+    mkdir "$selection"
+fi
+
+cd "$selection" || exit
+echo "Opened project $(pwd)"
+nvim
+

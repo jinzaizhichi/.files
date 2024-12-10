@@ -177,16 +177,10 @@ config.keys = {
 	setKeymap("y", "CTRL", act.ScrollByLine(-1)),
 	setKeymap("Home", "", act.ScrollToTop),
 	setKeymap("End", "", act.ScrollToBottom),
-	-- Enter [c]opy mode
-	setKeymap("c", "CTRL", act.ActivateCopyMode),
+	-- Enter copy [m]ode
+	setKeymap("m", "CTRL", act.ActivateCopyMode),
 	-- [O]pen project
-	setKeymap(
-		"o",
-		"CTRL",
-		act.SendString(
-			'cd "$(find ~/Documents/Projects/ ~/Documents/University\\ Projects/ -maxdepth 1 -mindepth 1 -type d | fzf)" && nvim\n'
-		)
-	),
+	setKeymap("o", "CTRL", act.SendString("~/.config/wezterm/open_project\n")),
 }
 
 -- Bind moving to tab index by ALT+1 to 5
