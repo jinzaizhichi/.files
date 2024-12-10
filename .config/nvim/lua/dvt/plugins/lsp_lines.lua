@@ -1,5 +1,6 @@
 return {
   'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+  enabled = false,
   -- For some reason, I can't lazy load this plugin whenever I use the keys item from lazy
   lazy = false,
   init = function()
