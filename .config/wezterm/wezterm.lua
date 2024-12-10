@@ -183,14 +183,9 @@ config.keys = {
 	setKeymap(
 		"o",
 		"CTRL",
-		wezterm.action_callback(function(win, pane)
-			win:perform_action(
-				act.SendString(
-					'cd "$(find ~/Documents/Projects/ ~/Documents/University\\ Projects/ -maxdepth 1 -mindepth 1 -type d | fzf)" && nvim\n'
-				),
-				pane
-			)
-		end)
+		act.SendString(
+			'cd "$(find ~/Documents/Projects/ ~/Documents/University\\ Projects/ -maxdepth 1 -mindepth 1 -type d | fzf)" && nvim\n'
+		)
 	),
 }
 
