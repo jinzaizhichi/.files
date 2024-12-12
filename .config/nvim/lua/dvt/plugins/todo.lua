@@ -6,16 +6,12 @@ return {
   keys = {
     {
       '[t',
-      function()
-        require('todo-comments').jump_prev()
-      end,
+      require('todo-comments').jump_prev,
       desc = 'Previous [t]odo comment',
     },
     {
       ']t',
-      function()
-        require('todo-comments').jump_next()
-      end,
+      require('todo-comments').jump_next,
       desc = 'Next [t]odo comment',
     },
     {

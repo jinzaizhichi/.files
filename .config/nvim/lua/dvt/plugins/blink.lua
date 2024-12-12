@@ -63,20 +63,6 @@ return {
 
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
-      -- sources = {
-      --   completion = {
-      --     enabled_providers = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
-      --   },
-      --   providers = {
-      --     lsp = {
-      --       fallback_for = { 'lazydev' },
-      --     },
-      --     lazydev = {
-      --       name = 'LazyDev',
-      --       module = 'lazydev.integrations.blink',
-      --     },
-      --   },
-      -- },
       sources = {
         -- add lazydev to your completion providers
         completion = {
@@ -99,19 +85,6 @@ return {
     },
     ---@param opts blink.cmp.Config
     config = function(_, opts)
-      -- setup compat sources
-      local enabled = opts.sources.completion.enabled_providers
-      for _, source in ipairs(opts.sources.compat or {}) do
-        opts.sources.providers[source] = vim.tbl_deep_extend(
-          'force',
-          { name = source, module = 'blink.compat.source' },
-          opts.sources.providers[source] or {}
-        )
-        if type(enabled) == 'table' and not vim.tbl_contains(enabled, source) then
-          table.insert(enabled, source)
-        end
-      end
-
       -- check if we need to override symbol kinds
       for _, provider in pairs(opts.sources.providers or {}) do
         ---@cast provider blink.cmp.SourceProviderConfig|{kind?:string}

@@ -2,6 +2,11 @@ return { -- Autoformat
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
+  init = function()
+    -- I want to be able to toggle autoformatting on save
+    -- See https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
+    vim.g.enable_autoformat = true
+  end,
   keys = {
     {
       '<leader>f',
@@ -62,9 +67,4 @@ return { -- Autoformat
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   },
-  init = function()
-    -- I want to be able to toggle autoformatting on save
-    -- See https://github.com/stevearc/conform.nvim/blob/master/doc/recipes.md#command-to-toggle-format-on-save
-    vim.g.enable_autoformat = true
-  end,
 }
