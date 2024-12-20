@@ -506,10 +506,6 @@ return { -- Collection of various small independent plugins/modules
 
     -- NOTE: Start mini.indentscope configuration
     require('mini.indentscope').setup {
-      draw = {
-        delay = 0,
-        animation = require('mini.indentscope').gen_animation.none(),
-      },
       options = {
         indent_at_cursor = false,
         try_as_border = true,
