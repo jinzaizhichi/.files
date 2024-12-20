@@ -238,6 +238,9 @@ return { -- Collection of various small independent plugins/modules
         )
       end
 
+      -- Setup filename section colors
+      vim.api.nvim_set_hl(0, 'MiniStatuslineFilename', { fg = 'fg', bg = 'bg' })
+
       return combine_groups {
         { hl = mode_hl_invert, strings = { '' } },
         { hl = mode_hl, strings = { mode } },
