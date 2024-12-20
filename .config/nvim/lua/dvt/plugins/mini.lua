@@ -393,6 +393,9 @@ return { -- Collection of various small independent plugins/modules
       },
     }
 
+    -- NOTE: Start mini.git configuration
+    require('mini.git').setup()
+
     -- NOTE: Start mini.files configuration
     local mini_files = require 'mini.files'
     mini_files.setup {
@@ -501,6 +504,17 @@ return { -- Collection of various small independent plugins/modules
       callback = function(args)
         vim.wo[args.data.win_id].number = true
         vim.wo[args.data.win_id].relativenumber = true
+      end,
+    })
+
+    -- Use to try and automatically detect
+    vim.api.nvim_create_autocmd('User', {
+      pattern = { 'MiniFilesActionRename', 'MiniFilesActionMove' },
+      callback = function(args)
+        local from = args.data.from
+        local to = args.data.to
+
+        pcall(vim.cmd, 'Git add ' .. from .. ' ' .. to)
       end,
     })
 
