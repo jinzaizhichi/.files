@@ -46,7 +46,7 @@ local dotfiles_files = vim
   :wait()
 local cwd = vim.fn.getcwd()
 cwd = string.sub(cwd, #home + 2)
-if cwd ~= nil and string.find(dotfiles_files.stdout, cwd) ~= nil then
+if cwd ~= nil and string.find(dotfiles_files.stdout, cwd, 1, true) ~= nil then
   vim.env.GIT_WORK_TREE = '/home/dvt'
   vim.env.GIT_DIR = '/home/dvt/.files'
 end
