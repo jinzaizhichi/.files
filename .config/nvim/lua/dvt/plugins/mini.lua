@@ -34,6 +34,55 @@ return { -- Collection of various small independent plugins/modules
       end,
       desc = 'Toggle [H]ighlighting',
     },
+    {
+      '<leader>/',
+      function()
+        require('mini.extra').pickers.buf_lines { scope = 'current' }
+      end,
+      desc = '[/] Fuzzily search in current buffer',
+    },
+    {
+      '<leader>so',
+      function()
+        require('mini.extra').pickers.oldfiles()
+      end,
+      desc = '[S]earch [O]ld Files',
+    },
+    {
+      '<leader>sr',
+      function()
+        require('mini.pick').builtin.resume()
+      end,
+      desc = '[S]earch [R]esume',
+    },
+    {
+      '<leader>sg',
+      function()
+        require('mini.pick').builtin.grep_live()
+      end,
+      desc = '[S]earch [G]rep',
+    },
+    {
+      '<leader>sf',
+      function()
+        require('mini.pick').builtin.files()
+      end,
+      desc = '[S]earch [F]iles',
+    },
+    {
+      '<leader>sk',
+      function()
+        require('mini.extra').pickers.keymaps()
+      end,
+      desc = '[S]earch [K]eymaps',
+    },
+    {
+      '<leader>sh',
+      function()
+        require('mini.pick').builtin.help()
+      end,
+      desc = '[S]earch [H]elp',
+    },
   },
   config = function()
     -- NOTE: Start mini.icons configuration
@@ -529,5 +578,61 @@ return { -- Collection of various small independent plugins/modules
       },
       symbol = '│',
     }
+
+    -- NOTE: Start mini.pick configuration with mini.extra pickers
+    require('mini.extra').setup()
+    require('mini.pick').setup {
+      delay = {
+        busy = 1,
+      },
+      mappings = {},
+    }
+
+    -- Open LSP picker for the given scope
+    ---@param scope "declaration" | "definition" | "document_symbol" | "implementation" | "references" | "type_definition" | "workspace_symbol"
+    ---@param autojump boolean? If there is only one result it will jump to it.
+    function MiniPick.LspPicker(scope, autojump)
+      ---@return string
+      local function get_symbol_query()
+        return vim.fn.input 'Symbol: '
+      end
+
+      if not autojump then
+        local opts = { scope = scope }
+
+        if scope == 'workspace_symbol' then
+          opts.symbol_query = get_symbol_query()
+        end
+
+        require('mini.extra').pickers.lsp(opts)
+        return
+      end
+
+      ---@param opts vim.lsp.LocationOpts.OnList
+      local function on_list(opts)
+        vim.fn.setqflist({}, ' ', opts)
+
+        if #opts.items == 1 then
+          vim.cmd.cfirst()
+        else
+          require('mini.extra').pickers.list(
+            { scope = 'quickfix' },
+            { source = { name = opts.title } }
+          )
+        end
+      end
+
+      if scope == 'references' then
+        vim.lsp.buf.references(nil, { on_list = on_list })
+        return
+      end
+
+      if scope == 'workspace_symbol' then
+        vim.lsp.buf.workspace_symbol(get_symbol_query(), { on_list = on_list })
+        return
+      end
+
+      vim.lsp.buf[scope] { on_list = on_list }
+    end
   end,
 }
