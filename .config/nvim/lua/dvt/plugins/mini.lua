@@ -1,5 +1,6 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
+  lazy = false,
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
